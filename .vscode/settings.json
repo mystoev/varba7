@@ -5,4 +5,7 @@
     "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }
