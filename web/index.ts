@@ -1,7 +1,7 @@
 import "dotenv/config";
 import fastify from "fastify";
-import { setup as setupDatabase } from "./db/setup";
-import { ping, testDb } from "./routes";
+import { setup as setupDatabase } from "./src/db/setup";
+import { ping, testDb } from "./src/routes";
 
 const { MONGODB_NAME, MONGODB_USER, MONGODB_PASS, APP_PORT } = process.env;
 
@@ -36,7 +36,11 @@ server.get<{ Querystring: IQuerystring; Headers: IHeaders }>(
   }
 );
 
-setupDatabase(String(MONGODB_NAME), String(MONGODB_USER), String(MONGODB_PASS));
+setupDatabase(
+  MONGODB_NAME as string,
+  MONGODB_USER as string,
+  MONGODB_PASS as string
+);
 
 server.listen({ port: Number(APP_PORT) }, (err, address) => {
   if (err) {
