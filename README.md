@@ -15,7 +15,7 @@ Using poetry to manage python version and it's dependencies
 The cronjob is created and configured in the system with:
 
 ```
-0 * * * * <abs-paht-to-python-file>
+0 * * * * <path-to-venv-python> <abs-paht-to-python-file>
 ```
 
 ### web
