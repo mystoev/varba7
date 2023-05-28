@@ -21,3 +21,7 @@ The cronjob is created and configured in the system with:
 ### web
 
 To display the weather stats in a human-presentable way
+
+### TODO
+
+- [ ] Create a shared module for the MongoDB. Create the env in one place. Place both python and nodejs modules in there, just to try it out
