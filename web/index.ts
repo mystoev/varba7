@@ -1,7 +1,7 @@
 import "dotenv/config";
 import fastify from "fastify";
 import { setup as setupDatabase } from "./src/db/setup";
-import { ping, testDb } from "./src/routes";
+import { ping, stats, testDb } from "./src/routes";
 
 const { MONGODB_NAME, MONGODB_USER, MONGODB_PASS, APP_PORT } = process.env;
 
@@ -19,6 +19,8 @@ const server = fastify({ logger: true });
 server.get("/ping", ping);
 
 server.get("/test-db", testDb);
+
+server.get("/stats", stats);
 
 server.get<{ Querystring: IQuerystring; Headers: IHeaders }>(
   "/auth",
