@@ -18,6 +18,10 @@ The cronjob is created and configured in the system with:
 0 * * * * <path-to-venv-python> <abs-paht-to-python-file>
 ```
 
+### server
+
+Communicate with the db and serve the needed data
+
 ### web
 
 To display the weather stats in a human-presentable way
@@ -25,3 +29,6 @@ To display the weather stats in a human-presentable way
 ### TODO
 
 - [ ] Create a shared module for the MongoDB. Create the env in one place. Place both python and nodejs modules in there, just to try it out
+- [ ] Setup UI
+- [ ] Choose a chart with a date time axis and display the weather data
+- [ ] Figure what's the best way to filter the weather data
