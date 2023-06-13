@@ -9,6 +9,7 @@
     "dev": "yarn build && yarn start"
   },
   "dependencies": {
+    "@fastify/cors": "^8.3.0",
     "@fastify/mongodb": "7.0.0",
     "@types/mongoose": "^5.11.97",
     "@types/node": "20.2.1",
