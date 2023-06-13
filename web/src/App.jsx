@@ -1,3 +1,5 @@
-const App = () => <p>Hello world!</p>;
+import Stats from "./Stats";
+
+const App = () => <Stats />;
 
 export default App;
