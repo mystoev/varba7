@@ -1,25 +1,39 @@
 import dayjs from "dayjs";
-
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import { useStats } from "./use-stats";
 
 const Stats = () => {
   const stats = useStats();
 
   return (
-    <>
-      {stats.map((entry) => {
-        const date = dayjs.unix(entry.timestamp);
-        const dateFormatted = `${date.date()} ${date.month()} ${date.year()}, ${date.hour()}:${date.minute()}`;
-        return (
-          <div key={entry._id}>
-            <p>Time: {dateFormatted}</p>
-            <p>Temperature: {entry.temperature} °C</p>
-            <p>Humidity: {entry.humidity} %</p>
-            <hr />
-          </div>
-        );
-      })}
-    </>
+    <div>
+      <div>
+        <LineChart width={1680} height={400} data={stats}>
+          <Line type="monotone" dataKey="temperature" stroke="#8884d8" />
+          <CartesianGrid stroke="#ccc" />
+          <XAxis
+            dataKey="timestamp"
+            tickFormatter={(timestamp) => {
+              const date = dayjs.unix(timestamp);
+              return `${date.date()} ${date.format("MMM")}`;
+            }}
+          />
+          <YAxis dataKey="temperature" />
+        </LineChart>
+        <LineChart width={1680} height={400} data={stats}>
+          <Line type="monotone" dataKey="humidity" stroke="#8884d8" />
+          <CartesianGrid stroke="#ccc" />
+          <XAxis
+            dataKey="timestamp"
+            tickFormatter={(timestamp) => {
+              const date = dayjs.unix(timestamp);
+              return `${date.date()} ${date.format("MMM")}`;
+            }}
+          />
+          <YAxis dataKey="humidity" />
+        </LineChart>
+      </div>
+    </div>
   );
 };
 
