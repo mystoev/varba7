@@ -1,26 +1,15 @@
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
-import { fetchData } from "./use-data";
+
+import { useStats } from "./use-stats";
 
 const Stats = () => {
-  const [stats, setStats] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const data = await fetchData();
-      setStats(data);
-    })();
-
-    return () => {
-      // this now gets called when the component unmounts
-    };
-  }, []);
+  const stats = useStats();
 
   return (
     <>
       {stats.map((entry) => {
         const date = dayjs.unix(entry.timestamp);
-        const dateFormatted = `${date.date()} ${date.month()} ${date.year()}, ${date.hour()}:00`;
+        const dateFormatted = `${date.date()} ${date.month()} ${date.year()}, ${date.hour()}:${date.minute()}`;
         return (
           <div key={entry._id}>
             <p>Time: {dateFormatted}</p>
