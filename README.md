@@ -30,5 +30,4 @@ To display the weather stats in a human-presentable way
 
 - [ ] Create a shared module for the MongoDB. Create the env in one place. Place both python and nodejs modules in there, just to try it out
 - [ ] Setup UI
-- [ ] Choose a chart with a date time axis and display the weather data
 - [ ] Figure what's the best way to filter the weather data
