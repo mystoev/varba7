@@ -1,3 +1,4 @@
+import cors from "@fastify/cors";
 import "dotenv/config";
 import fastify from "fastify";
 import { setup as setupDatabase } from "./src/db/setup";
@@ -15,6 +16,10 @@ interface IHeaders {
 }
 
 const server = fastify({ logger: true });
+
+server.register(cors, {
+  origin: "http://localhost:5173",
+});
 
 server.get("/ping", ping);
 
