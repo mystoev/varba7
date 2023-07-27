@@ -1,6 +1,6 @@
 import cors from "@fastify/cors";
 import "dotenv/config";
-import fastify from "fastify";
+import fastify, { FastifyRequest } from "fastify";
 import { setup as setupDatabase } from "./src/db/setup";
 import { ping, stats, testDb } from "./src/routes";
 
@@ -10,6 +10,10 @@ interface IQuerystring {
   username: string;
   password: string;
 }
+
+type MyRequest = FastifyRequest<{
+  Querystring: { month: string };
+}>;
 
 interface IHeaders {
   "h-Custom": string;
@@ -25,7 +29,10 @@ server.get("/ping", ping);
 
 server.get("/test-db", testDb);
 
-server.get("/stats", stats);
+server.get("/stats", async (request: MyRequest) => {
+  const { month } = request.query;
+  return stats(month);
+});
 
 server.get<{ Querystring: IQuerystring; Headers: IHeaders }>(
   "/auth",
