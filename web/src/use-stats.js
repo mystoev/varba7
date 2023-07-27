@@ -1,4 +1,6 @@
 import axios from "axios";
+import dayjs from "dayjs";
+import { groupBy, maxBy, minBy, orderBy } from "lodash";
 import { useEffect, useState } from "react";
 
 const fetchData = async (filter) => {
@@ -14,7 +16,22 @@ const useStats = (monthFilter) => {
   useEffect(() => {
     (async () => {
       const data = await fetchData(monthFilter);
-      setStats(data);
+      const result = groupBy(data, (d) => {
+        return dayjs.unix(d.timestamp).get("date");
+      });
+      const maxTemperatures = Object.keys(result).map((key) => {
+        return maxBy(result[key], "temperature");
+      });
+      const minTemperatures = Object.keys(result).map((key) => {
+        return minBy(result[key], "temperature");
+      });
+      // setStats(data);
+      setStats(
+        orderBy(maxTemperatures.concat(minTemperatures), [
+          ["timestamp"],
+          ["asc"],
+        ])
+      );
     })();
 
     return () => {};
