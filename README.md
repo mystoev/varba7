@@ -1,16 +1,13 @@
 # Weather @ Varba7
 
-The idea is to gather each day the weather information:
+Gathers the weather information of Varba7:
 
 - temperature
 - humidity
-- pressure (optional)
-
-Should be able to easily see the live stats
 
 ### cron
 
-Using poetry to manage python version and it's dependencies
+Using [Poetry](https://python-poetry.org/) to manage python's version and its dependencies
 
 The cronjob is created and configured in the system with:
 
@@ -20,11 +17,11 @@ The cronjob is created and configured in the system with:
 
 ### server
 
-Communicate with the db and serve the needed data
+Communicate with the database and serves the needed data
 
 ### web
 
-To display the weather stats in a human-presentable way
+Displays the weather stats in a human-readable way. Currently, using [Reachart](https://recharts.org/)
 
 ### TODO
 
@@ -34,6 +31,11 @@ To display the weather stats in a human-presentable way
 - [ ] Make the dropdown more pleasing - maybe use bootstrap or something else
 - [ ] Show only the MIN and MAX temperatures of the day
 - [ ] Make the charts show each of the month, no matter of there is any data for it
+- [ ] CI/CD
+  - [ ] Figure out a server to host this on.
+  - [ ] After a server is found - deploy it
+  - [ ] Should have 2 separate deployments: for UI and server
+  - [ ] Setup github actions to deploy on some... action :)
 
 #### Tech Dept
 
