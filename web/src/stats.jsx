@@ -25,12 +25,12 @@ Chart.propTypes = {
   field: PropTypes.string.isRequired,
 };
 
-const startMonth = "202305";
+const startMonth = "20230501";
 const calculateMonths = () => {
   const today = dayjs().add(1, "month").format("YYYYMM");
   const availableMonths = [];
 
-  let nextMonth = dayjs(`${startMonth}01`);
+  let nextMonth = dayjs(`${startMonth}`);
   while (nextMonth.format("YYYYMM") != today) {
     availableMonths.push(nextMonth);
 
@@ -51,7 +51,7 @@ const Stats = () => {
       <select onChange={({ target: { value } }) => setMonthFilter(value)}>
         {months.map((month) => {
           return (
-            <option key={month} value={dayjs(month).format("YYYYMM")}>
+            <option key={month} value={dayjs(month).format("YYYYMMDD")}>
               {dayjs(month).format("MMM YY")}
             </option>
           );
