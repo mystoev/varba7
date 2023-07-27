@@ -28,6 +28,13 @@ To display the weather stats in a human-presentable way
 
 ### TODO
 
+#### Features
+
+- [ ] Beautify the charts - make them responsive, define fixed colors
+- [ ] Make the dropdown more pleasing - maybe use bootstrap or something else
+- [ ] Show only the MIN and MAX temperatures of the day
+- [ ] Make the charts show each of the month, no matter of there is any data for it
+
+#### Tech Dept
+
 - [ ] Create a shared module for the MongoDB. Create the env in one place. Place both python and nodejs modules in there, just to try it out
-- [ ] Setup UI
-- [ ] Figure what's the best way to filter the weather data
