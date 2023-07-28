@@ -27,7 +27,6 @@ Displays the weather stats in a human-readable way. Currently, using [Reachart](
 
 ### Features
 
-- [ ] Make the dropdown more pleasing - maybe use bootstrap or something else
 - [ ] CI/CD
   - [ ] Figure out a server to host this on.
   - [ ] After a server is found - deploy it

@@ -1,3 +1,4 @@
+import { MenuItem, Select } from "@mui/material";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { useState } from "react";
@@ -12,6 +13,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+
 import "./stats.css";
 import { useStats } from "./use-stats";
 
@@ -100,15 +102,18 @@ const Stats = () => {
   return (
     <div>
       <h1>Varba7 Weather Statistics</h1>
-      <select onChange={({ target: { value } }) => setMonthFilter(value)}>
+      <Select
+        onChange={({ target: { value } }) => setMonthFilter(value)}
+        defaultValue={startMonth}
+      >
         {months.map((month) => {
           return (
-            <option key={month} value={dayjs(month).format("YYYYMMDD")}>
+            <MenuItem key={month} value={dayjs(month).format("YYYYMMDD")}>
               {dayjs(month).format("MMM YY")}
-            </option>
+            </MenuItem>
           );
         })}
-      </select>
+      </Select>
       <div className="charts-container">
         <Chart
           data={stats}
