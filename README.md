@@ -29,6 +29,7 @@ Displays the weather stats in a human-readable way. Currently, using [Reachart](
 
 - [ ] CI/CD
   - [ ] Setup Github self-hosted runner
+  - [ ] CI/CD for the cronjob
   - [ ] CD web; CD server
   - [ ] Deploy on a Guthub release
 
