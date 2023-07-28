@@ -28,10 +28,9 @@ Displays the weather stats in a human-readable way. Currently, using [Reachart](
 ### Features
 
 - [ ] CI/CD
-  - [ ] Figure out a server to host this on.
-  - [ ] After a server is found - deploy it
-  - [ ] Should have 2 separate deployments: for UI and server
-  - [ ] Setup github actions to deploy on some... action :)
+  - [ ] Setup Github self-hosted runner
+  - [ ] CD web; CD server
+  - [ ] Deploy on a Guthub release
 
 ### Tech Dept
 
