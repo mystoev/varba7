@@ -1,11 +1,11 @@
 name: build-web
-run-name: Triggered by ${{ github.actor }}
+run-name: For commit - ${{ github.event.head_commit.message }}
 on:
   push:
     branches:
       - main
-    # paths:
-    #   - 'web/**'
+    paths:
+      - "web/**"
 jobs:
   build:
     runs-on: ubuntu-latest
