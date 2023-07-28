@@ -1,4 +1,4 @@
-import Stats from "./Stats";
+import Stats from "./stats";
 
 const App = () => <Stats />;
 
