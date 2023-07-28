@@ -109,7 +109,7 @@ const Stats = () => {
         {months.map((month) => {
           return (
             <MenuItem key={month} value={dayjs(month).format("YYYYMMDD")}>
-              {dayjs(month).format("MMM YY")}
+              {dayjs(month).format("MMMM YYYY")}
             </MenuItem>
           );
         })}
