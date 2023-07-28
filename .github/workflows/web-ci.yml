@@ -22,4 +22,4 @@ jobs:
         run: cd web && yarn
 
       - name: Build server
-        run: yarn build
+        run: cd web && yarn build
