@@ -1,5 +1,5 @@
 name: build-server
-run-name: For commit - ${{ github.event.head_commit.message }}
+
 on:
   push:
     branches:
