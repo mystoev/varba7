@@ -4,7 +4,7 @@ import { groupBy, maxBy, minBy, orderBy } from "lodash";
 import { useEffect, useState } from "react";
 
 const fetchData = async (filter) => {
-  const url = `http://192.168.50.44:8080/stats?month=${filter}`;
+  const url = `http://192.168.50.44:5173/stats?month=${filter}`;
   const { data } = await axios.get(url);
 
   return data;
