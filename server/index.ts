@@ -25,6 +25,10 @@ server.register(cors, {
   origin: "http://0.0.0.0:80",
 });
 
+server.register(cors, {
+  origin: "http://176.12.23.79:80",
+});
+
 server.get("/ping", ping);
 
 server.get("/test-db", testDb);
