@@ -22,10 +22,6 @@ interface IHeaders {
 const server = fastify({ logger: true });
 
 server.register(cors, {
-  origin: "http://0.0.0.0:80",
-});
-
-server.register(cors, {
   origin: "http://176.12.23.79:80",
 });
 
