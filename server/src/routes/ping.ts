@@ -1,1 +1,1 @@
-export const ping = async () => "pong";
+export const ping = async () => "pong\n";
