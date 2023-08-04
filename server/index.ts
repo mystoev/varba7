@@ -4,7 +4,7 @@ import fastify, { FastifyRequest } from "fastify";
 import { setup as setupDatabase } from "./src/db/setup";
 import { ping, stats, testDb } from "./src/routes";
 
-const { MONGODB_NAME, MONGODB_USER, MONGODB_PASS, APP_PORT } = process.env;
+const { MONGODB_NAME, MONGODB_USER, MONGODB_PASS, APP_PORT, IP } = process.env;
 
 interface IQuerystring {
   username: string;
@@ -56,7 +56,7 @@ setupDatabase(
   MONGODB_PASS as string
 );
 
-server.listen({ port: Number(APP_PORT) }, (err, address) => {
+server.listen({ host: IP, port: Number(APP_PORT) }, (err, address) => {
   if (err) {
     console.log(err);
     process.exit(1);
