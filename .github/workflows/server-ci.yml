@@ -30,6 +30,6 @@ jobs:
 
       - name: Copy env vars
         run: cp ~/.config/varba7/weather-server ./server/.env
-      
+    
       - name: Copy server resources
-        run: cp -af ./server ~/server/server
+        run: cp -af ./server ~/server

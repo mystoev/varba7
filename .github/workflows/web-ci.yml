@@ -24,3 +24,6 @@ jobs:
 
       - name: Build web
         run: cd web && yarn build
+      
+      - name: Copy web resource
+        run: cp -af ./web ~/server
