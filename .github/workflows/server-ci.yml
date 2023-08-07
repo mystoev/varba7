@@ -29,4 +29,7 @@ jobs:
         run: cd server && yarn build
 
       - name: Copy env vars
-        run: cp ~/.config/varba7/weather-server ~/actions-runner/_work/varba7-weather/varba7-weather/server/.env
+        run: cp ~/.config/varba7/weather-server ./server/.env
+      
+      - name: Copy server resources
+        run: cp -af ./server ~/server/server
