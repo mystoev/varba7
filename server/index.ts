@@ -22,7 +22,7 @@ interface IHeaders {
 const server = fastify({ logger: true });
 
 server.register(cors, {
-  origin: "http://176.12.23.79:80",
+  origin: "*",
 });
 
 server.get("/ping", ping);
