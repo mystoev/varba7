@@ -23,6 +23,7 @@ const server = fastify({ logger: true });
 
 server.register(cors, {
   origin: "*",
+  methods: ["GET"],
 });
 
 server.get("/ping", ping);
