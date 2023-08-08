@@ -1,0 +1,12 @@
+[Unit]
+Description=Varba7 Backend Weather Service
+StartLimitIntervalSec=30
+StartLimitBurst=5
+
+[Service]
+User=mystoev
+ExecStart=yarn --cwd ~/server/ dev
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
