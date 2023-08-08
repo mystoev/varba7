@@ -27,11 +27,12 @@ Displays the weather stats in a human-readable way. Currently, using [Reachart](
 
 ### Features
 
+- [ ] Refactor
+  - [ ] Unify IPs, ports and domain, while in dev and in prod
+  - [ ] Start in prod when on home server
 - [ ] CI/CD
-  - [ ] Setup Github self-hosted runner
   - [ ] CI/CD for the cronjob
-  - [ ] CD web; CD server
-  - [ ] Deploy on a Guthub release
+  - [ ] Deploy on a Github release
 
 ### Tech Dept
 
