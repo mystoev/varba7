@@ -106,7 +106,7 @@ const Stats = () => {
         onChange={({ target: { value } }) => setMonthFilter(value)}
         defaultValue={startMonth}
       >
-        {months.map((month) => {
+        {months.reverse().map((month) => {
           return (
             <MenuItem key={month} value={dayjs(month).format("YYYYMMDD")}>
               {dayjs(month).format("MMMM YYYY")}
