@@ -32,4 +32,4 @@ jobs:
         run: cp ~/.config/varba7/weather-server ./server/.env
 
       - name: Copy server resources
-        run: cp -af ./server/dist/. ~/server
+        run: cp -af ./server/. ~/server
