@@ -5,7 +5,7 @@ StartLimitBurst=5
 
 [Service]
 User=mystoev
-ExecStart=yarn --cwd ~/server/ dev
+ExecStart=yarn --cwd /home/mystoev/server/ dev
 Restart=always
 
 [Install]
