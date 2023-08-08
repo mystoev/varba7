@@ -14,6 +14,7 @@ import {
   YAxis,
 } from "recharts";
 
+import { orderBy } from "lodash";
 import "./stats.css";
 import { useStats } from "./use-stats";
 
@@ -79,24 +80,26 @@ Chart.propTypes = {
 };
 
 const startMonth = "20230501";
+const today = dayjs();
+const todayFormatted = today.format("YYYYMM") + "01";
 const calculateMonths = () => {
-  const today = dayjs().add(1, "month").format("YYYYMM");
+  const nextMonth = today.add(1, "month").format("YYYYMM");
   const availableMonths = [];
 
-  let nextMonth = dayjs(`${startMonth}`);
-  while (nextMonth.format("YYYYMM") != today) {
-    availableMonths.push(nextMonth);
+  let month = dayjs(startMonth);
+  while (month.format("YYYYMM") != nextMonth) {
+    availableMonths.push(month);
 
-    nextMonth = nextMonth.add(1, "month");
+    month = month.add(1, "month");
   }
 
-  return availableMonths;
+  return orderBy(availableMonths, ["$d"], ["desc"]);
 };
 
 const months = calculateMonths();
 
 const Stats = () => {
-  const [monthFilter, setMonthFilter] = useState(startMonth);
+  const [monthFilter, setMonthFilter] = useState(todayFormatted);
   const stats = useStats(monthFilter);
 
   return (
@@ -104,7 +107,7 @@ const Stats = () => {
       <h1>Varba7 Weather Stats</h1>
       <Select
         onChange={({ target: { value } }) => setMonthFilter(value)}
-        defaultValue={startMonth}
+        defaultValue={todayFormatted}
       >
         {months.reverse().map((month) => {
           return (
