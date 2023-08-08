@@ -24,6 +24,6 @@ jobs:
 
       - name: Build web
         run: cd web && yarn build
-      
+
       - name: Copy web resource
-        run: cp -af ./web ~/server
+        run: sudo cp -af ./web/dist/. /var/www/html/
