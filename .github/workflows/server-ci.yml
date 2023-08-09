@@ -7,6 +7,11 @@ on:
       - main
     paths:
       - "server/**"
+
+defaults:
+  run:
+    working-directory: ./server
+
 jobs:
   build:
     runs-on: [self-hosted]
@@ -20,16 +25,13 @@ jobs:
           node-version: "18.12.1"
 
       - name: Install dependencies
-        run: cd server && yarn
+        run: yarn
 
       - name: Copy env vars
-        run: cp ~/.config/varba7/weather-server ./server/.env
+        run: cp ~/.config/varba7/weather-server .env
 
       - name: Build server
-        run: cd server && yarn build
-
-      - name: Copy env vars
-        run: cp ~/.config/varba7/weather-server ./server/.env
+        run: yarn build
 
       - name: Copy server resources
-        run: cp -af ./server/. ~/server
+        run: cp -af . ~/server
