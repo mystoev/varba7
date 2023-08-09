@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+      - name: Copy env vars
+        run: cp ~/.config/varba7/weather-web .env
+
       - name: Build web
         run: yarn build
 

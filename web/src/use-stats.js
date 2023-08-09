@@ -3,8 +3,10 @@ import dayjs from "dayjs";
 import { groupBy, maxBy, minBy, orderBy } from "lodash";
 import { useEffect, useState } from "react";
 
+const { VITE_API_ADDRESS, VITE_PORT } = import.meta.env;
+
 const fetchData = async (filter) => {
-  const url = `http://176.12.23.79:5173/stats?month=${filter}`;
+  const url = `http://${VITE_API_ADDRESS}:${VITE_PORT}/stats?month=${filter}`;
   const { data } = await axios.get(url);
 
   return data;
@@ -25,7 +27,7 @@ const useStats = (monthFilter) => {
       const minTemperatures = Object.keys(result).map((key) => {
         return minBy(result[key], "temperature");
       });
-      // setStats(data);
+
       setStats(
         orderBy(maxTemperatures.concat(minTemperatures), [
           ["timestamp"],
