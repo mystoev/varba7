@@ -2,7 +2,7 @@ import cors from "@fastify/cors";
 import "dotenv/config";
 import fastify, { FastifyRequest } from "fastify";
 import { setup as setupDatabase } from "./src/db/setup";
-import { ping, stats, testDb } from "./src/routes";
+import { latest, ping, stats, testDb } from "./src/routes";
 
 const { MONGODB_NAME, MONGODB_USER, MONGODB_PASS, APP_PORT, IP } = process.env;
 
@@ -34,6 +34,8 @@ server.get("/stats", async (request: MyRequest) => {
   const { month } = request.query;
   return stats(month);
 });
+
+server.get("/latest", latest);
 
 server.get<{ Querystring: IQuerystring; Headers: IHeaders }>(
   "/auth",

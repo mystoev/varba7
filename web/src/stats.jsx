@@ -15,6 +15,7 @@ import {
 } from "recharts";
 
 import { orderBy } from "lodash";
+import { Link } from "react-router-dom";
 import "./stats.css";
 import { useStats } from "./use-stats";
 
@@ -104,6 +105,9 @@ const Stats = () => {
 
   return (
     <div>
+      <h1>
+        <Link to={"/"}>Home</Link>
+      </h1>
       <h1>Varba7 Weather Statistics</h1>
       <Select
         onChange={({ target: { value } }) => setMonthFilter(value)}
