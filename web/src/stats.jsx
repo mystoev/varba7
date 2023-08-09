@@ -104,7 +104,7 @@ const Stats = () => {
 
   return (
     <div>
-      <h1>Varba7 Weather Stats</h1>
+      <h1>Varba7 Weather Statistics</h1>
       <Select
         onChange={({ target: { value } }) => setMonthFilter(value)}
         defaultValue={todayFormatted}

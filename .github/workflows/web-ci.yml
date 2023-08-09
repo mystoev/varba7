@@ -7,6 +7,11 @@ on:
       - main
     paths:
       - "web/**"
+
+defaults:
+  run:
+    working-directory: ./web
+
 jobs:
   build:
     runs-on: [self-hosted]
@@ -20,10 +25,10 @@ jobs:
           node-version: "18.12.1"
 
       - name: Install dependencies
-        run: cd web && yarn
+        run: yarn
 
       - name: Build web
-        run: cd web && yarn build
+        run: yarn build
 
       - name: Copy web resource
-        run: cp -af ./web/dist/. /var/www/html/
+        run: cp -af ./dist/. /var/www/html/
