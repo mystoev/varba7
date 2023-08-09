@@ -13,7 +13,7 @@ const fetchData = async (filter) => {
 };
 
 const useStats = (monthFilter) => {
-  const [stats, setStats] = useState([]);
+  const [stats, setStats] = useState({ max: [], min: [] });
 
   useEffect(() => {
     (async () => {
@@ -21,19 +21,17 @@ const useStats = (monthFilter) => {
       const result = groupBy(data, (d) => {
         return dayjs.unix(d.timestamp).get("date");
       });
-      const maxTemperatures = Object.keys(result).map((key) => {
-        return maxBy(result[key], "temperature");
-      });
-      const minTemperatures = Object.keys(result).map((key) => {
-        return minBy(result[key], "temperature");
-      });
-
-      setStats(
-        orderBy(maxTemperatures.concat(minTemperatures), [
-          ["timestamp"],
-          ["asc"],
-        ])
+      const maxTemperatures = Object.keys(result).map((key) =>
+        maxBy(result[key], "temperature")
       );
+      const minTemperatures = Object.keys(result).map((key) =>
+        minBy(result[key], "temperature")
+      );
+
+      setStats({
+        max: orderBy(maxTemperatures, [["timestamp"], ["asc"]]),
+        min: orderBy(minTemperatures, [["timestamp"], ["asc"]]),
+      });
     })();
 
     return () => {};

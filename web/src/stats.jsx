@@ -101,7 +101,7 @@ const months = calculateMonths();
 
 const Stats = () => {
   const [monthFilter, setMonthFilter] = useState(todayFormatted);
-  const stats = useStats(monthFilter);
+  const { max, min } = useStats(monthFilter);
 
   return (
     <div>
@@ -122,12 +122,20 @@ const Stats = () => {
         })}
       </Select>
       <div className="charts-container">
+        <h2>Max temperatures</h2>
         <Chart
-          data={stats}
+          data={max}
           field={"temperature"}
           fill={calculateTemperatureColor}
         />
-        <Chart data={stats} field={"humidity"} fill={calculateHumidityColor} />
+        <Chart data={max} field={"humidity"} fill={calculateHumidityColor} />
+        <h2>Min temperatures</h2>
+        <Chart
+          data={min}
+          field={"temperature"}
+          fill={calculateTemperatureColor}
+        />
+        <Chart data={min} field={"humidity"} fill={calculateHumidityColor} />
       </div>
     </div>
   );
