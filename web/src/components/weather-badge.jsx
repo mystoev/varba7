@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useLatest } from "./use-latest";
+
+import { useLatest } from "../hooks/use-latest";
 import "./weather-badge.css";
 
 const WeatherBadge = () => {
