@@ -25,11 +25,5 @@ Displays the weather stats in a human-readable way. Currently, using [Reachart](
 
 ## TODO
 
-### Features
-
-- [ ] Refactor
-  - [ ] Change the 5173 port after refactor
-
-### Tech Dept
-
-- [ ] Create a shared module for the MongoDB. Create the env in one place. Place both python and nodejs modules in there, just to try it out
+- [ ] Change the 5173 port after refactor
+- [ ] General refactoring
