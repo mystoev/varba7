@@ -28,11 +28,7 @@ Displays the weather stats in a human-readable way. Currently, using [Reachart](
 ### Features
 
 - [ ] Refactor
-  - [ ] Start in prod when on home server
   - [ ] Change the 5173 port after refactor
-- [ ] CI/CD
-  - [ ] CI/CD for the cronjob
-  - [ ] Deploy on a Github release
 
 ### Tech Dept
 
