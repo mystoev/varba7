@@ -26,4 +26,3 @@ Displays the weather stats in a human-readable way. Currently, using [Reachart](
 ## TODO
 
 - [ ] Change the 5173 port after refactor
-- [ ] General refactoring
