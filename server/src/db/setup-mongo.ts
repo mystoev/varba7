@@ -1,6 +1,6 @@
 import { connect } from "mongoose";
 
-export const setup = async (
+export const setupMongo = async (
   databaseName: string,
   user: string,
   pass: string
