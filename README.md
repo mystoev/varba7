@@ -22,7 +22,3 @@ Communicate with the database and serves the needed data
 ## web
 
 Displays the weather stats in a human-readable way. Currently, using [Reachart](https://recharts.org/)
-
-## TODO
-
-- [ ] Change the 5173 port after refactor
