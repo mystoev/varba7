@@ -21,4 +21,4 @@ Communicate with the database and serves the needed data
 
 ## web
 
-Displays the weather stats in a human-readable way. Currently, using [Reachart](https://recharts.org/)
+Displays the weather stats in a human-readable way. Currently, using [Recharts](https://recharts.org/)

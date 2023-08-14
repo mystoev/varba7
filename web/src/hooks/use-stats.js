@@ -18,9 +18,8 @@ const useStats = (monthFilter) => {
   useEffect(() => {
     (async () => {
       const data = await fetchData(monthFilter);
-      const result = groupBy(data, (d) => {
-        return dayjs.unix(d.timestamp).get("date");
-      });
+      const result = groupBy(data, (d) => dayjs.unix(d.timestamp).get("date"));
+
       const maxTemperatures = Object.keys(result).map((key) =>
         maxBy(result[key], "temperature")
       );

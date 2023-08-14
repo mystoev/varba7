@@ -8,13 +8,11 @@ const months = calculateMonths();
 
 const MonthsSelect = ({ onSelectChange }) => (
   <Select onChange={onSelectChange} defaultValue={todayFormatted}>
-    {months.reverse().map((month) => {
-      return (
-        <MenuItem key={month} value={dayjs(month).format("YYYYMMDD")}>
-          {dayjs(month).format("MMMM YYYY")}
-        </MenuItem>
-      );
-    })}
+    {months.map((month) => (
+      <MenuItem key={month} value={dayjs(month).format("YYYYMMDD")}>
+        {dayjs(month).format("MMMM YYYY")}
+      </MenuItem>
+    ))}
   </Select>
 );
 
