@@ -30,7 +30,9 @@ const MonthlyChart = ({ data, field, fill }) => (
         }}
       />
       <YAxis dataKey={field} />
-      <Tooltip labelFormatter={(value) => dayjs.unix(value).format("DD MMM")} />
+      <Tooltip
+        labelFormatter={(value) => dayjs.unix(value).format("DD MMM HH:mm")}
+      />
     </BarChart>
   </ResponsiveContainer>
 );
