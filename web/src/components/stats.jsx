@@ -55,7 +55,6 @@ const Stats = () => {
       <h1>
         <Link to={"/"}>Home</Link>
       </h1>
-      <h1>Varba7 Weather Statistics</h1>
       <MonthsSelect
         onSelectChange={({ target: { value } }) => setMonthFilter(value)}
       />
