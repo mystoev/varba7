@@ -22,6 +22,10 @@ a {
   padding: 10px 0;
 }
 
+.latest h4 {
+  color: white;
+}
+
 .latest section {
   display: flex;
   flex-direction: column;

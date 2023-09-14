@@ -6,8 +6,8 @@ import { calculateMonths, todayFormatted } from "../selectors/months";
 
 const months = calculateMonths();
 
-const MonthsSelect = ({ onSelectChange }) => (
-  <Select onChange={onSelectChange} defaultValue={todayFormatted}>
+const MonthsSelect = ({ onSelectChange, ...props }) => (
+  <Select onChange={onSelectChange} defaultValue={todayFormatted} {...props}>
     {months.map((month) => (
       <MenuItem key={month} value={dayjs(month).format("YYYYMMDD")}>
         {dayjs(month).format("MMMM YYYY")}

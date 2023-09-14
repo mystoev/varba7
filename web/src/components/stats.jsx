@@ -15,22 +15,22 @@ import "./stats.css";
 const ChartsContainer = ({ max, min }) => {
   return (
     <div className="charts-container">
-      <h2>Max temperatures</h2>
+      <h2>Max & Min Temperatures</h2>
       <MonthlyChart
         data={max}
         field={"temperature"}
         fill={calculateTemperatureColor}
       />
-      <MonthlyChart
-        data={max}
-        field={"humidity"}
-        fill={calculateHumidityColor}
-      />
-      <h2>Min temperatures</h2>
       <MonthlyChart
         data={min}
         field={"temperature"}
         fill={calculateTemperatureColor}
+      />
+      <h2>Max & Min Humidity</h2>
+      <MonthlyChart
+        data={max}
+        field={"humidity"}
+        fill={calculateHumidityColor}
       />
       <MonthlyChart
         data={min}
@@ -51,11 +51,12 @@ const Stats = () => {
   const { max, min } = useStats(monthFilter);
 
   return (
-    <div>
+    <div className="weather-stats">
       <h1>
         <Link to={"/"}>Home</Link>
       </h1>
       <MonthsSelect
+        className="weather-stats-select"
         onSelectChange={({ target: { value } }) => setMonthFilter(value)}
       />
       <ChartsContainer max={max} min={min} />

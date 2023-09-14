@@ -1,6 +1,22 @@
+.weather-stats h1 {
+  text-align: center;
+  margin: 10px auto;
+}
+
+.weather-stats-select {
+  margin: 10px;
+  display: block !important;
+}
+
 .charts-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+  .weather-stats h1 {
+    display: none;
+  }
 }

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 
 import { useLatest } from "../hooks/use-latest";
@@ -5,7 +6,7 @@ import { calculateTemperatureColor } from "../selectors/colors";
 import "./weather-badge.css";
 
 const WeatherBadge = () => {
-  const { temperature, humidity } = useLatest();
+  const { temperature, humidity, timestamp } = useLatest();
   const temperatureColor = calculateTemperatureColor({ temperature });
 
   return (
@@ -25,6 +26,10 @@ const WeatherBadge = () => {
             <p>Humidity:</p>
             <p>{humidity}%</p>
           </h2>
+          <h4>
+            <p>At:</p>
+            <p>{dayjs.unix(timestamp).format("HH:mm, DD MMM YYYY")}</p>
+          </h4>
         </section>
       </Link>
     )

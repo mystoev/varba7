@@ -5,7 +5,6 @@ import {
   BarChart,
   CartesianGrid,
   Cell,
-  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -13,7 +12,7 @@ import {
 } from "recharts";
 
 const MonthlyChart = ({ data, field, fill }) => (
-  <ResponsiveContainer width="90%" height={400}>
+  <ResponsiveContainer width="90%" height={200}>
     <BarChart data={data}>
       <Bar type="monotone" dataKey={field}>
         {data.map((entry, index) => (
@@ -21,7 +20,6 @@ const MonthlyChart = ({ data, field, fill }) => (
         ))}
       </Bar>
       <CartesianGrid vertical={false} />
-      <Legend verticalAlign="top" height={36} />
       <XAxis
         dataKey="timestamp"
         tickFormatter={(timestamp) => {
