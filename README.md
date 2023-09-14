@@ -1,24 +1,10 @@
-# Weather @ Varba7
+# TBD
 
-Gathers the weather information of Varba7:
+# TODO
 
-- temperature
-- humidity
-
-## cron
-
-Using [Poetry](https://python-poetry.org/) to manage python's version and its dependencies
-
-The cronjob is created and configured in the system with:
-
-```
-0 * * * * <path-to-venv-python> <abs-paht-to-python-file>
-```
-
-## server
-
-Communicate with the database and serves the needed data
-
-## web
-
-Displays the weather stats in a human-readable way. Currently, using [Recharts](https://recharts.org/)
+- Use TS for server; JavaScript for UI
+- Server should be Apollo GraphQL with Fastify integration
+- Gather info about P1 and P2 from SDS011 and show it in the UI
+- Use .env.local instead of .env
+- Setup infra using Ansible
+- Consider UI to be React Native

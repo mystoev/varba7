@@ -1,0 +1,14 @@
+{
+  "name": "varba7",
+  "version": "1.0.0",
+  "description": "Managed everything that's running on mystoev@varba7",
+  "main": "index.js",
+  "workspaces": [
+    "./packages/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martin Stoev",
+  "license": "ISC"
+}
