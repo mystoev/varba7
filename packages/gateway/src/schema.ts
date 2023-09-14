@@ -12,8 +12,10 @@ const typeDefs = `#graphql
   }
 
   type Query {
-    latestFineDustParticlesInfo: [SDS001SensorData]!
-    latestClimateInfo: [BME280SensorData]
+    latestSDS001: SDS001SensorData!
+    latestBME280: BME280SensorData
+    periodicSDS001(startDate: String!, endDate: String!): [SDS001SensorData]
+    periodicBME280(startDate: String!, endDate: String!): [BME280SensorData]
   }
 `;
 
