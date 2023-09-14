@@ -10,16 +10,22 @@ const WeatherBadge = () => {
 
   return (
     temperature && (
-      <Link to={"weather-stats"}>
-        <div className="latest" style={{ backgroundColor: temperatureColor }}>
-          <h1>Varba7</h1>
+      <Link
+        to={"weather-stats"}
+        className="latest"
+        style={{ backgroundColor: temperatureColor }}
+      >
+        <h1>Varba7</h1>
+        <section>
           <h2>
-            <span>Temperature:</span> {temperature}°C
+            <p>Temperature:</p>
+            <p>{temperature}°C</p>
           </h2>
           <h2>
-            <span>Humidity</span> {humidity}%
+            <p>Humidity:</p>
+            <p>{humidity}%</p>
           </h2>
-        </div>
+        </section>
       </Link>
     )
   );

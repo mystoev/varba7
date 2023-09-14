@@ -3,19 +3,48 @@ a {
 }
 
 .latest {
-  width: 300px;
-  padding: 20px;
+  display: block;
+  width: 540px;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
   border-radius: 5px;
 }
 
 .latest h1 {
   color: black;
+  padding: 10px;
 }
 
-.latest h2 {
+.latest section h2 {
   color: white;
+  width: 100%;
+  padding: 10px 0;
 }
 
-.latest span {
+.latest section {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.latest section p {
+  display: inline-block;
+  width: 50%;
+}
+
+.latest section p:first-child {
+  text-align: right;
   color: lightgray;
+}
+
+.latest section p:last-child {
+  text-align: left;
+}
+
+@media only screen and (max-width: 768px) {
+  .latest {
+    margin-top: 3vw;
+    width: 94vw;
+  }
 }
