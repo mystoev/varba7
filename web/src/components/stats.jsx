@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 import MonthlyChart from "./monthly-chart";
 
 import { useStats } from "../hooks/use-stats";
-import {
-  calculateHumidityColor,
-  calculateTemperatureColor,
-} from "../selectors/colors";
+import { calculateTemperatureColor } from "../selectors/colors";
 import { todayFormatted } from "../selectors/months";
 import MonthsSelect from "./months-select";
 import "./stats.css";
@@ -25,17 +22,6 @@ const ChartsContainer = ({ max, min }) => {
         data={min}
         field={"temperature"}
         fill={calculateTemperatureColor}
-      />
-      <h2>Max & Min Humidity</h2>
-      <MonthlyChart
-        data={max}
-        field={"humidity"}
-        fill={calculateHumidityColor}
-      />
-      <MonthlyChart
-        data={min}
-        field={"humidity"}
-        fill={calculateHumidityColor}
       />
     </div>
   );

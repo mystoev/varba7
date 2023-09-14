@@ -12,7 +12,7 @@ import {
 } from "recharts";
 
 const MonthlyChart = ({ data, field, fill }) => (
-  <ResponsiveContainer width="90%" height={200}>
+  <ResponsiveContainer width="90%" height={250}>
     <BarChart data={data}>
       <Bar type="monotone" dataKey={field}>
         {data.map((entry, index) => (
