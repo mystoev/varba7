@@ -2,18 +2,15 @@
   "name": "@varba7/gateway",
   "version": "1.0.0",
   "description": "Main gateway to access mystoev@varba7",
-  "type": "module",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "compile": "tsc",
     "start": "npm run compile && node ./dist/index.js"
   },
   "author": "Martin Stoev",
   "dependencies": {
-    "@apollo/server": "^4.9.3",
-    "@as-integrations/fastify": "^2.1.0",
-    "fastify": "^4.23.2",
-    "graphql": "^16.8.0"
+    "@apollo/server": "4.9.3",
+    "graphql": "16.8.0"
   },
   "devDependencies": {
     "@types/node": "^20.6.0",
