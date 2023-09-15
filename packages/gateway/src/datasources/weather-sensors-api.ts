@@ -3,7 +3,7 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 export class WeatherSensorsAPI extends RESTDataSource {
   baseURL = "https://data.sensor.community/airrohr/v1/sensor/";
 
-  getSDS001Info() {
+  getSDS011Info() {
     return this.get("11681/");
   }
 

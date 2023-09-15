@@ -4,7 +4,7 @@ import { Timestamp } from "./timestamp-scalar";
 const resolvers = {
   Timestamp,
   Query: {
-    latestSDS001: () => ({
+    latestSDS011: () => ({
       timestamp: new Date(),
       pm10: 3.5,
       pm25: 1.2,

@@ -2,7 +2,7 @@ const typeDefs = `#graphql
   "A number filter representing a timestamp"
   scalar Timestamp
 
-  type SDS001SensorData {
+  type SDS011SensorData {
     timestamp: Timestamp!
     pm10: Float!
     pm25: Float!
@@ -15,9 +15,9 @@ const typeDefs = `#graphql
   }
 
   type Query {
-    latestSDS001: SDS001SensorData!
+    latestSDS011: SDS011SensorData!
     latestBME280: BME280SensorData
-    periodicSDS001(startDate: String!, endDate: String!): [SDS001SensorData]
+    periodicSDS011(startDate: String!, endDate: String!): [SDS011SensorData]
     periodicBME280(startDate: String!, endDate: String!): [BME280SensorData]
   }
 `;
