@@ -1,3 +1,4 @@
+import { WeatherSensorsAPI } from "../datasources/weather-sensors-api";
 import { Timestamp } from "./timestamp-scalar";
 
 const resolvers = {
@@ -8,11 +9,25 @@ const resolvers = {
       pm10: 3.5,
       pm25: 1.2,
     }),
-    latestBME280: () => ({
-      timestamp: 1694765164,
-      temperature: 30,
-      humidity: 0.5,
-    }),
+    latestBME280: async (
+      parent: any,
+      args: any,
+      {
+        dataSources: { weatherSensorsAPI },
+      }: { dataSources: { weatherSensorsAPI: WeatherSensorsAPI } }
+    ) => {
+      const [{ timestamp, sensordatavalues }] =
+        await weatherSensorsAPI.getBME280Info();
+
+      const temperature = sensordatavalues.find(
+        (val: any) => val.value_type === "temperature"
+      ).value;
+      const humidity = sensordatavalues.find(
+        (val: any) => val.value_type === "humidity"
+      ).value;
+
+      return { timestamp, temperature, humidity };
+    },
   },
 };
 

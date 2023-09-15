@@ -13,6 +13,10 @@ const validateTimestampScalar = (value: unknown) => {
     return value.getTime();
   }
 
+  if (typeof value === "string" && !isNaN(new Date(value).getTime())) {
+    return new Date(value).getTime();
+  }
+
   throw Error(
     "GraphQL Timestamp Scalar serializer expected String, Number or Date"
   );

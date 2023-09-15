@@ -4,10 +4,10 @@ export class WeatherSensorsAPI extends RESTDataSource {
   baseURL = "https://data.sensor.community/airrohr/v1/sensor/";
 
   getSDS001Info() {
-    return this.get("11681");
+    return this.get("11681/");
   }
 
   getBME280Info() {
-    return this.get("11682");
+    return this.get("11682/");
   }
 }
