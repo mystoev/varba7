@@ -39,6 +39,24 @@ const resolvers = {
 
       return { timestamp, temperature, humidity };
     },
+    periodicSDS011: () => {
+      return [
+        {
+          timestamp: 123,
+          pm25: 3.5,
+          pm10: 9,
+        },
+      ];
+    },
+    periodicBME280: () => {
+      return [
+        {
+          timestamp: 123,
+          temperature: 12.34,
+          humidity: 18.3,
+        },
+      ];
+    },
   },
 };
 

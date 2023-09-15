@@ -25,13 +25,7 @@ const validateTimestampScalar = (value: unknown) => {
 export const Timestamp = new GraphQLScalarType({
   name: "Timestamp",
   description: "A number filter representing a timestamp",
-  parseValue(inputValue: unknown) {
-    return validateTimestampScalar(inputValue);
-  },
-  parseLiteral(inputValue) {
-    return validateTimestampScalar(inputValue);
-  },
-  serialize(outputValue: unknown) {
-    return validateTimestampScalar(outputValue);
-  },
+  parseValue: validateTimestampScalar,
+  parseLiteral: validateTimestampScalar,
+  serialize: validateTimestampScalar,
 });
