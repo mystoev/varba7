@@ -1,14 +1,29 @@
 import { WeatherSensorsAPI } from "../datasources/weather-sensors-api";
 import { Timestamp } from "./timestamp-scalar";
 
+const getSensorValue = (sensorData: Array<any>, valueName: String) => {
+  const { value } = sensorData.find((val: any) => val.value_type === valueName);
+  return value;
+};
+
 const resolvers = {
   Timestamp,
   Query: {
-    latestSDS011: () => ({
-      timestamp: new Date(),
-      pm10: 3.5,
-      pm25: 1.2,
-    }),
+    latestSDS011: async (
+      parent: any,
+      args: any,
+      {
+        dataSources: { weatherSensorsAPI },
+      }: { dataSources: { weatherSensorsAPI: WeatherSensorsAPI } }
+    ) => {
+      const [{ timestamp, sensordatavalues: sensorData }] =
+        await weatherSensorsAPI.getSDS011Info();
+
+      const pm25 = getSensorValue(sensorData, "P2");
+      const pm10 = getSensorValue(sensorData, "P1");
+
+      return { timestamp, pm25, pm10 };
+    },
     latestBME280: async (
       parent: any,
       args: any,
@@ -16,15 +31,11 @@ const resolvers = {
         dataSources: { weatherSensorsAPI },
       }: { dataSources: { weatherSensorsAPI: WeatherSensorsAPI } }
     ) => {
-      const [{ timestamp, sensordatavalues }] =
+      const [{ timestamp, sensordatavalues: sensorData }] =
         await weatherSensorsAPI.getBME280Info();
 
-      const temperature = sensordatavalues.find(
-        (val: any) => val.value_type === "temperature"
-      ).value;
-      const humidity = sensordatavalues.find(
-        (val: any) => val.value_type === "humidity"
-      ).value;
+      const temperature = getSensorValue(sensorData, "temperature");
+      const humidity = getSensorValue(sensorData, "humidity");
 
       return { timestamp, temperature, humidity };
     },

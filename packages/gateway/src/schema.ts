@@ -4,8 +4,8 @@ const typeDefs = `#graphql
 
   type SDS011SensorData {
     timestamp: Timestamp!
-    pm10: Float!
     pm25: Float!
+    pm10: Float!
   }
 
   type BME280SensorData {
