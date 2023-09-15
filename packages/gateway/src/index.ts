@@ -2,7 +2,7 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
 import { WeatherSensorsAPI } from "./datasources/weather-sensors-api";
-import resolvers from "./resolvers";
+import resolvers from "./resolvers/resolvers";
 import typeDefs from "./schema";
 
 const server = new ApolloServer({

@@ -1,12 +1,15 @@
 const typeDefs = `#graphql
+  "A number filter representing a timestamp"
+  scalar Timestamp
+
   type SDS001SensorData {
-    timestamp: String!
+    timestamp: Timestamp!
     pm10: Float!
     pm25: Float!
   }
 
   type BME280SensorData {
-    timestamp: String!
+    timestamp: Timestamp!
     temperature: Float!
     humidity: Float!
   }
