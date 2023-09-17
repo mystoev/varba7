@@ -1,3 +1,4 @@
+import { Stats } from "../datasources/stats";
 import { WeatherSensorsAPI } from "../datasources/weather-sensors-api";
 import { Timestamp } from "./timestamp-scalar";
 
@@ -10,8 +11,8 @@ const resolvers = {
   Timestamp,
   Query: {
     latestSDS011: async (
-      parent: any,
-      args: any,
+      _parent: any,
+      _args: any,
       {
         dataSources: { weatherSensorsAPI },
       }: { dataSources: { weatherSensorsAPI: WeatherSensorsAPI } }
@@ -25,8 +26,8 @@ const resolvers = {
       return { timestamp, pm25, pm10 };
     },
     latestBME280: async (
-      parent: any,
-      args: any,
+      _parent: any,
+      _args: any,
       {
         dataSources: { weatherSensorsAPI },
       }: { dataSources: { weatherSensorsAPI: WeatherSensorsAPI } }
@@ -39,23 +40,14 @@ const resolvers = {
 
       return { timestamp, temperature, humidity };
     },
-    periodicSDS011: () => {
-      return [
-        {
-          timestamp: 123,
-          pm25: 3.5,
-          pm10: 9,
-        },
-      ];
-    },
-    periodicBME280: () => {
-      return [
-        {
-          timestamp: 123,
-          temperature: 12.34,
-          humidity: 18.3,
-        },
-      ];
+    periodicBME280: async (
+      _: any,
+      { startDate, endDate }: { startDate: string; endDate: string },
+      { dataSources: { statsDB } }: { dataSources: { statsDB: Stats } }
+    ) => {
+      const result = await statsDB.periodicBME280(startDate, endDate);
+
+      return result;
     },
   },
 };

@@ -17,7 +17,6 @@ const typeDefs = `#graphql
   type Query {
     latestSDS011: SDS011SensorData!
     latestBME280: BME280SensorData
-    periodicSDS011(startDate: String!, endDate: String!): [SDS011SensorData]
     periodicBME280(startDate: String!, endDate: String!): [BME280SensorData]
   }
 `;

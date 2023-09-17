@@ -9,10 +9,12 @@
   },
   "author": "Martin Stoev",
   "dependencies": {
-    "@apollo/datasource-rest": "^6.1.1",
+    "@apollo/datasource-rest": "6.1.1",
     "@apollo/server": "4.9.3",
+    "dotenv": "16.3.1",
     "graphql": "16.8.0",
-    "nodemon": "^3.0.1"
+    "mongoose": "7.5.2",
+    "nodemon": "3.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.6.0",

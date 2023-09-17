@@ -1,4 +1,4 @@
-import { GraphQLScalarType } from "graphql";
+import { GraphQLScalarType, Kind, ValueNode } from "graphql";
 
 const validateTimestampScalar = (value: unknown) => {
   if (typeof value === "string" && !isNaN(+value)) {
@@ -6,7 +6,7 @@ const validateTimestampScalar = (value: unknown) => {
   }
 
   if (typeof value === "number") {
-    return value;
+    return Math.trunc(value);
   }
 
   if (value instanceof Date) {
@@ -26,6 +26,18 @@ export const Timestamp = new GraphQLScalarType({
   name: "Timestamp",
   description: "A number filter representing a timestamp",
   parseValue: validateTimestampScalar,
-  parseLiteral: validateTimestampScalar,
   serialize: validateTimestampScalar,
+  parseLiteral(ast: ValueNode) {
+    if (ast.kind === Kind.INT) {
+      return parseInt(ast.value, 10);
+    } else if (ast.kind === Kind.STRING && !isNaN(+ast.value)) {
+      return +ast.value;
+    }
+
+    //TODO: check if Date
+
+    throw Error(
+      "GraphQL Timestamp Scalar serializer expected String, Number or Date"
+    );
+  },
 });

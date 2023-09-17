@@ -9,3 +9,4 @@
 - Setup infra using Ansible
 - Consider UI to be React Native
 - Move schema to gql/graphql file
+- TODOs
