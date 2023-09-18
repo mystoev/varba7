@@ -1,5 +1,5 @@
 import { KeyValueCache } from "apollo-server-caching";
-import { Stats as StatsModel } from "../models/mongo";
+import { BME280 } from "../models/mongo";
 
 const msTillNextHour = (): number => {
   const now = new Date();
@@ -13,7 +13,7 @@ const msTillNextHour = (): number => {
   return +nextHour - +now;
 };
 
-export class Stats {
+export class PeriodicBME280Data {
   private cache: KeyValueCache<string>;
 
   constructor({ cache }: { cache: KeyValueCache<string> }) {
@@ -30,7 +30,7 @@ export class Stats {
       return JSON.parse(cacheObject);
     }
 
-    const result = await StatsModel.find({
+    const result = await BME280.find({
       timestamp: { $gt, $lt },
     });
 

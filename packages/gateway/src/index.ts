@@ -3,7 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import * as dotenv from "dotenv";
 import { connect } from "mongoose";
 
-import { Stats } from "./datasources/stats";
+import { PeriodicBME280Data } from "./datasources/bme280-stats";
 import { WeatherSensorsAPI } from "./datasources/weather-sensors-api";
 import resolvers from "./resolvers/resolvers";
 import typeDefs from "./schema";
@@ -27,7 +27,7 @@ const startApollo = async () => {
       return {
         dataSources: {
           weatherSensorsAPI: new WeatherSensorsAPI({ cache }),
-          statsDB: new Stats({ cache }),
+          statsDB: new PeriodicBME280Data({ cache }),
         },
       };
     },

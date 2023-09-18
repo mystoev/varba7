@@ -1,4 +1,4 @@
-import { Stats } from "../datasources/stats";
+import { PeriodicBME280Data } from "../datasources/bme280-stats";
 import { WeatherSensorsAPI } from "../datasources/weather-sensors-api";
 import { Timestamp } from "./timestamp-scalar";
 
@@ -43,9 +43,11 @@ const resolvers = {
     periodicBME280: async (
       _: any,
       { startDate, endDate }: { startDate: string; endDate: string },
-      { dataSources: { statsDB } }: { dataSources: { statsDB: Stats } }
+      {
+        dataSources: { bme280Stats },
+      }: { dataSources: { bme280Stats: PeriodicBME280Data } }
     ) => {
-      const result = await statsDB.periodicBME280(startDate, endDate);
+      const result = await bme280Stats.periodicBME280(startDate, endDate);
 
       return result;
     },

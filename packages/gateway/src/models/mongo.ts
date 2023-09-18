@@ -1,15 +1,15 @@
 import { Schema, model } from "mongoose";
 
-export interface IStats {
+export interface IBME280 {
   timestamp: number;
   temperature: number;
   humidity: number;
 }
 
-export const StatsDbSchema = new Schema<IStats>({
+export const BME280Schema = new Schema<IBME280>({
   timestamp: { type: Number },
   temperature: { type: Number },
   humidity: { type: Number },
 });
 
-export const Stats = model<IStats>("Stats", StatsDbSchema, "stats");
+export const BME280 = model<IBME280>("Stats", BME280Schema, "stats");
