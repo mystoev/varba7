@@ -47,7 +47,17 @@ const resolvers = {
         dataSources: { bme280Stats },
       }: { dataSources: { bme280Stats: PeriodicBME280Data } }
     ) => {
-      const result = await bme280Stats.periodicBME280(startDate, endDate);
+      const startTimestamp = new Date(startDate).getTime() / 1000;
+      const endTimestamp = new Date(endDate).getTime() / 1000;
+
+      if (isNaN(startTimestamp) || isNaN(endTimestamp)) {
+        throw Error("GraphQL could not convert string to Date");
+      }
+
+      const result = await bme280Stats.periodicBME280(
+        startTimestamp,
+        endTimestamp
+      );
 
       return result;
     },

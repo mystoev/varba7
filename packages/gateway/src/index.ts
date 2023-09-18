@@ -27,7 +27,7 @@ const startApollo = async () => {
       return {
         dataSources: {
           weatherSensorsAPI: new WeatherSensorsAPI({ cache }),
-          statsDB: new PeriodicBME280Data({ cache }),
+          bme280Stats: new PeriodicBME280Data({ cache }),
         },
       };
     },

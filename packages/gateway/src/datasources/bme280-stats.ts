@@ -20,18 +20,15 @@ export class PeriodicBME280Data {
     this.cache = cache;
   }
 
-  async periodicBME280(startDate: string, endDate: string) {
-    const $gt = new Date(startDate).getTime() / 1000;
-    const $lt = new Date(endDate).getTime() / 1000;
-
-    const cacheKey = `BME280-${$gt}-${$lt}`;
+  async periodicBME280(startDate: number, endDate: number) {
+    const cacheKey = `BME280-${startDate}-${endDate}`;
     const cacheObject = await this.cache.get(cacheKey);
     if (cacheObject) {
       return JSON.parse(cacheObject);
     }
 
     const result = await BME280.find({
-      timestamp: { $gt, $lt },
+      timestamp: { $gt: startDate, $lt: endDate },
     });
 
     this.cache.set(cacheKey, JSON.stringify(result), { ttl: msTillNextHour() });

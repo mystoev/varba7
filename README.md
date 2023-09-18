@@ -9,6 +9,5 @@
 - Setup infra using Ansible
 - Consider UI to be React Native
 - Move schema to gql/graphql file
-- TODOs
 - coerce periodicBME280 date params and work with timestamp
 - once the graphql server is deployed, rename the stats collecton in mongo to BME280

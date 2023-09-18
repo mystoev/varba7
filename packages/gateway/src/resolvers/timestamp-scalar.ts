@@ -34,8 +34,6 @@ export const Timestamp = new GraphQLScalarType({
       return +ast.value;
     }
 
-    //TODO: check if Date
-
     throw Error(
       "GraphQL Timestamp Scalar serializer expected String, Number or Date"
     );
