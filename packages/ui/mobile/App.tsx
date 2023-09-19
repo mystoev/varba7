@@ -14,7 +14,14 @@ import {
 } from 'react-native';
 
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
-import {Test} from './app/shared/components/test';
+
+import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
+import Badge from './app/shared/components/badge';
+
+const client = new ApolloClient({
+  uri: 'http://192.168.50.184:4000/',
+  cache: new InMemoryCache(),
+});
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -33,7 +40,9 @@ function App(): JSX.Element {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
-        <Test />
+        <ApolloProvider client={client}>
+          <Badge />
+        </ApolloProvider>
       </ScrollView>
     </SafeAreaView>
   );

@@ -1,11 +1,11 @@
 import "./App.css";
 
-import { Test } from "./shared/components/test";
+import Badge from "./shared/components/badge";
 
 function App() {
   return (
     <>
-      <Test />
+      <Badge />
     </>
   );
 }
