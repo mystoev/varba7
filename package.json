@@ -1,7 +1,7 @@
 {
-  "name": "varba7",
+  "name": "@varba7/ui",
   "version": "1.0.0",
-  "description": "Managed everything that's running on mystoev@varba7",
+  "description": "UI for everything that's running on mystoev@varba7",
   "main": "index.js",
   "workspaces": [
     "./packages/*"

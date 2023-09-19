@@ -3,11 +3,9 @@
 # TODO
 
 - Use TS for server; JavaScript for UI
-- Server should be Apollo GraphQL with Fastify integration. Set everything up without Fastify and then swtich
+- Server should be Apollo GraphQL with Fastify integration. Set everything up without Fastify and then switch
 - Gather info about P1 and P2 from SDS011 and show it in the UI
-- Use .env.local instead of .env
 - Setup infra using Ansible
 - Consider UI to be React Native
 - Move schema to gql/graphql file
-- coerce periodicBME280 date params and work with timestamp
-- once the graphql server is deployed, rename the stats collecton in mongo to BME280
+- once the graphql server is deployed, rename the stats collection in mongo to BME280
