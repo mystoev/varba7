@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { format } from "date-fns";
 import { StyleSheet, Text, View } from "react-native";
 
 const GET_LATEST_BME280 = gql`
@@ -40,7 +41,9 @@ const Badge_BME280 = () => {
       <Text style={badgeStyles.text}>
         Humidity: {data.latestBME280.humidity}
       </Text>
-      <Text style={badgeStyles.text}>At: {data.latestBME280.timestamp}</Text>
+      <Text style={badgeStyles.text}>
+        At: {format(data.latestBME280.timestamp, "HH:mm, dd MMM yyyy")}
+      </Text>
     </View>
   );
 };

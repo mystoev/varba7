@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { format } from "date-fns";
 import { StyleSheet, Text, View } from "react-native";
 
 const GET_LATEST_SDS011 = gql`
@@ -36,7 +37,9 @@ const Badge_SDS011 = () => {
     <View style={badgeStyles.container}>
       <Text style={badgeStyles.text}>PM2.5: {data.latestSDS011.pm25}</Text>
       <Text style={badgeStyles.text}>PM10: {data.latestSDS011.pm10}</Text>
-      <Text style={badgeStyles.text}>At: {data.latestSDS011.timestamp}</Text>
+      <Text style={badgeStyles.text}>
+        At: {format(data.latestSDS011.timestamp, "HH:mm, dd MMM yyyy")}
+      </Text>
     </View>
   );
 };
