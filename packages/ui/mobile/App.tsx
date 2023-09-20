@@ -3,8 +3,7 @@ import React from 'react';
 import {SafeAreaView, ScrollView, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import Badge_BME280 from './app/shared/components/badge-bme280';
-import Badge_SDS011 from './app/shared/components/badge-sds011';
+import Home from './app/shared/components/home';
 
 const client = new ApolloClient({
   uri: 'http://192.168.50.184:4000/',
@@ -24,8 +23,7 @@ function App(): JSX.Element {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <ApolloProvider client={client}>
-          <Badge_BME280 />
-          <Badge_SDS011 />
+          <Home />
         </ApolloProvider>
       </ScrollView>
     </SafeAreaView>
