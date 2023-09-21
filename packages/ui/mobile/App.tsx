@@ -15,13 +15,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './app/shared/components/home';
 
 const client = new ApolloClient({
-  uri: 'http://192.168.50.184:4000/',
+  uri: 'http://10.0.2.2:4000/',
   cache: new InMemoryCache(),
 });
 
 const Stack = createNativeStackNavigator();
 
-const HomePage = ({navigation}) => {
+const HomePage = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -35,10 +35,6 @@ const HomePage = ({navigation}) => {
         style={backgroundStyle}>
         <ApolloProvider client={client}>
           <Home />
-          <Button
-            title="Go to Details"
-            onPress={() => navigation.navigate('Test')}
-          />
         </ApolloProvider>
       </ScrollView>
     </SafeAreaView>
@@ -57,9 +53,27 @@ const TestPage = ({navigation}) => {
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomePage} />
-        <Stack.Screen name="Test" component={TestPage} />
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: 'green',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}>
+        <Stack.Screen
+          name="Home"
+          component={HomePage}
+          options={{title: 'Varba7'}}
+        />
+        <Stack.Screen
+          name="Test"
+          component={TestPage}
+          options={{title: 'History'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
