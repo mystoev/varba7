@@ -1,56 +1,53 @@
-import {gql, useQuery} from '@apollo/client';
+import {useQuery} from '@apollo/client';
 import {format} from 'date-fns';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, Text, View} from 'react-native';
 
-import {useGoTo} from '../../navigation';
-
-const GET_LATEST_BME280 = gql`
-  query Query {
-    latestBME280 {
-      humidity
-      temperature
-      timestamp
-    }
-  }
-`;
-
-const badgeStyles = StyleSheet.create({
-  container: {
-    marginTop: 50,
-    backgroundColor: 'red',
-    width: '80%',
-    alignSelf: 'center',
-    margin: 'auto',
-  },
-  text: {
-    textAlign: 'center',
-    padding: 10,
-    color: 'black',
-  },
-});
+import {useSharedNavigation} from '../../navigation';
+import {GET_LATEST_BME280} from '../queries/latest-bme280';
+import {selectTemperatureColor} from '../selectors/color';
+import {badgeStyles, headingStyles} from '../styles/text';
 
 const Badge_BME280 = () => {
   const {loading, error, data} = useQuery(GET_LATEST_BME280);
-  const {navigate} = useGoTo();
+  const {navigate} = useSharedNavigation();
 
-  if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error : {error.message}</Text>;
+
+  const backgroundColor = selectTemperatureColor(
+    data?.latestBME280?.temperature,
+  );
 
   return (
     <Pressable
       onPress={() => {
         navigate('Test');
       }}>
-      <View style={badgeStyles.container}>
-        <Text style={badgeStyles.text}>
-          Temperatures: {data.latestBME280.temperature}
-        </Text>
-        <Text style={badgeStyles.text}>
-          Humidity: {data.latestBME280.humidity}
-        </Text>
-        <Text style={badgeStyles.text}>
-          At: {format(data.latestBME280.timestamp, 'HH:mm, dd MMM yyyy')}
-        </Text>
+      <View style={[badgeStyles.container, {backgroundColor}]}>
+        <Text style={headingStyles.h1}>Weather</Text>
+        {loading ? (
+          <Text style={headingStyles.loading}>Loading...</Text>
+        ) : (
+          <>
+            <Text style={headingStyles.h2}>
+              Temperature:{' '}
+              <Text style={headingStyles.white}>
+                {data.latestBME280.temperature} °C
+              </Text>
+            </Text>
+            <Text style={headingStyles.h2}>
+              Humidity:{' '}
+              <Text style={headingStyles.white}>
+                {data.latestBME280.humidity} %
+              </Text>
+            </Text>
+            <Text style={headingStyles.h4}>
+              At:{' '}
+              <Text style={headingStyles.white}>
+                {format(data.latestBME280.timestamp, 'HH:mm, dd MMM yyyy')}
+              </Text>
+            </Text>
+          </>
+        )}
       </View>
     </Pressable>
   );

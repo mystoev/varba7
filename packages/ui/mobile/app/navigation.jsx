@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 
-export const useGoTo = () => {
+export const useSharedNavigation = () => {
   const {navigate} = useNavigation();
 
   return {
