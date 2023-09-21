@@ -6,13 +6,12 @@ import {
 } from '@apollo/client';
 import {setContext} from '@apollo/client/link/context';
 import React from 'react';
-import {Button, ScrollView, Text} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {MMKVLoader} from 'react-native-mmkv-storage';
 
-import Home from './app/shared/components/home';
+import {BME280Page, HomePage} from './app/shared/pages';
 
 const httpLink = createHttpLink({
   uri:
@@ -40,42 +39,23 @@ const client = new ApolloClient({
 
 const Stack = createNativeStackNavigator();
 
-const HomePage = () => {
-  return (
-    <ScrollView>
-      <Home />
-    </ScrollView>
-  );
-};
-
-const TestPage = ({navigation}) => {
-  return (
-    <ScrollView>
-      <Text>Next page</Text>
-      <Button title="Go Back" onPress={() => navigation.goBack()} />
-    </ScrollView>
-  );
-};
-
-function App(): JSX.Element {
-  return (
-    <ApolloProvider client={client}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen
-            name="Home"
-            component={HomePage}
-            options={{title: 'Varba7'}}
-          />
-          <Stack.Screen
-            name="Test"
-            component={TestPage}
-            options={{title: 'History'}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </ApolloProvider>
-  );
-}
+const App = () => (
+  <ApolloProvider client={client}>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={HomePage}
+          options={{title: 'Varba7'}}
+        />
+        <Stack.Screen
+          name="bme280"
+          component={BME280Page}
+          options={{title: 'BME280 History'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  </ApolloProvider>
+);
 
 export default App;

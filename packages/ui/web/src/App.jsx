@@ -5,9 +5,9 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { Link, RouterProvider, createMemoryRouter } from "react-router-dom";
+import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
-import Home from "./shared/components/home";
+import { BME280Page, HomePage } from "./shared/pages";
 
 const httpLink = createHttpLink({
   uri:
@@ -17,10 +17,8 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
   const token = localStorage.getItem("token");
 
-  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
@@ -34,31 +32,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const HomePage = () => {
-  return (
-    <>
-      <Home />
-    </>
-  );
-};
-
-const TestPage = () => {
-  return (
-    <>
-      <p>Test Page</p>
-      <Link to="/">Back Home</Link>
-    </>
-  );
-};
-
 const router = createMemoryRouter([
   {
     path: "/",
     element: <HomePage />,
   },
   {
-    path: "/test",
-    element: <TestPage />,
+    path: "/bme280",
+    element: <BME280Page />,
   },
 ]);
 

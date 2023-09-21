@@ -20,7 +20,7 @@ const Badge_BME280 = () => {
   return (
     <Pressable
       onPress={() => {
-        navigate('Test');
+        navigate('bme280');
       }}>
       <View style={[badgeStyles.container, {backgroundColor}]}>
         <Text style={headingStyles.h1}>Weather</Text>
