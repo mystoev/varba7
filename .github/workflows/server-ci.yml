@@ -5,12 +5,13 @@ on:
   push:
     branches:
       - main
+      - graphql
     paths:
-      - "server/**"
+      - "packages/gateway/**"
 
 defaults:
   run:
-    working-directory: ./server
+    working-directory: ./packages/gateway
 
 jobs:
   build:
@@ -25,13 +26,13 @@ jobs:
           node-version: "18.12.1"
 
       - name: Install dependencies
-        run: yarn
+        run: npm ci
 
       - name: Copy env vars
-        run: cp ~/.config/varba7/weather-server .env
+        run: cp ~/.config/varba7/weather-server .env.local
 
       - name: Build server
-        run: yarn build
+        run: npm run build
 
       - name: Copy server resources
         run: cp -af . ~/server
