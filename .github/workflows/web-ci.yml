@@ -26,7 +26,7 @@ jobs:
           node-version: "18.12.1"
 
       - name: Install dependencies
-        run: npm i
+        run: npm ci
 
       - name: Copy env vars
         run: cp ~/.config/varba7/weather-web .env.local
