@@ -15,7 +15,7 @@ import {BME280Page, HomePage} from './app/shared/pages';
 const httpLink = createHttpLink({
   uri:
     process.env.NODE_ENV !== 'production'
-      ? 'http://10.0.2.2:4000'
+      ? 'http://10.0.2.2:4000' //http://176.12.23.79:6161
       : process.env.REACT_APP_GQL_SERVER,
 });
 
