@@ -6,3 +6,4 @@
 - Setup infra using Ansible
 - Move schema to gql/graphql file
 - once the graphql server is deployed, rename the stats collection in mongo to BME280
+- remove graphql branch from web-ci
