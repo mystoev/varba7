@@ -9,7 +9,7 @@ import resolvers from "./resolvers";
 import typeDefs from "./schema";
 
 dotenv.config({ path: __dirname + "/.env.local" });
-const { TOKEN } = process.env;
+const { TOKEN, APP_PORT } = process.env;
 
 const server = new ApolloServer({
   typeDefs,
@@ -37,7 +37,7 @@ export const start = async () => {
         },
       };
     },
-    listen: { port: 4000 },
+    listen: { port: !APP_PORT || isNaN(+APP_PORT) ? 4000 : +APP_PORT },
   });
 
   console.log(`🚀  Server ready at: ${url}`);
