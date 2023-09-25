@@ -6,11 +6,11 @@ on:
     branches:
       - main
     paths:
-      - "web/**"
+      - "packages/ui/web/**"
 
 defaults:
   run:
-    working-directory: ./web
+    working-directory: ./packages/ui/web
 
 jobs:
   build:
@@ -25,13 +25,13 @@ jobs:
           node-version: "18.12.1"
 
       - name: Install dependencies
-        run: yarn
+        run: npm i
 
       - name: Copy env vars
-        run: cp ~/.config/varba7/weather-web .env
+        run: cp ~/.config/varba7/weather-web .env.local
 
       - name: Build web
-        run: yarn build
+        run: npm run build
 
       - name: Copy web resource
         run: cp -af ./dist/. /var/www/html/

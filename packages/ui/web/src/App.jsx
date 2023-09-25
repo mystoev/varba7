@@ -9,11 +9,9 @@ import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
 import { BME280Page, HomePage } from "./shared/pages";
 
+console.log(import.meta.env.MODE);
 const httpLink = createHttpLink({
-  uri:
-    process.env.NODE_ENV !== "production"
-      ? "http://localhost:4000"
-      : process.env.REACT_APP_GQL_SERVER,
+  uri: import.meta.env.DEV ? "http://localhost:4000" : import.meta.env.VITE_URL,
 });
 
 const authLink = setContext((_, { headers }) => {
