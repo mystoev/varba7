@@ -9,7 +9,6 @@ import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
 import { BME280Page, HomePage } from "./shared/pages";
 
-console.log(import.meta.env.MODE);
 const httpLink = createHttpLink({
   uri: import.meta.env.DEV ? "http://localhost:4000" : import.meta.env.VITE_URL,
 });
