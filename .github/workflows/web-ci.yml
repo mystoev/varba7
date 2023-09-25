@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - graphql
     paths:
       - "packages/ui/web/**"
 
