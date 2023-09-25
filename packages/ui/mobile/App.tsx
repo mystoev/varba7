@@ -5,10 +5,11 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import {setContext} from '@apollo/client/link/context';
+import {sha256} from 'react-native-sha256';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {MMKVLoader} from 'react-native-mmkv-storage';
+import {getUniqueId} from 'react-native-device-info';
 
 import {BME280Page, HomePage} from './app/shared/pages';
 
@@ -19,9 +20,10 @@ const httpLink = createHttpLink({
       : process.env.REACT_APP_GQL_SERVER,
 });
 
-const storage = new MMKVLoader().initialize();
 const authLink = setContext(async (_, {headers}) => {
-  const token = await storage.getStringAsync('token');
+  const uniqueId = await getUniqueId();
+
+  const token = await sha256(uniqueId);
 
   return {
     headers: {
