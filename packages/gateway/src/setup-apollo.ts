@@ -8,7 +8,7 @@ import { WeatherSensorsAPI } from "./datasources/weather-sensors-api";
 import resolvers from "./resolvers";
 import typeDefs from "./schema";
 
-dotenv.config({ path: __dirname + "/.env.local" });
+dotenv.config({ path: __dirname + ".env.local" });
 const { TOKEN, APP_PORT } = process.env;
 
 const server = new ApolloServer({
