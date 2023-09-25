@@ -2,11 +2,13 @@
 Description=Varba7 Backend Weather Service
 StartLimitIntervalSec=30
 StartLimitBurst=5
+After=network.target
 
 [Service]
+Type=simple
 User=mystoev
-ExecStart=npm --cwd /home/mystoev/server/ run start
-Restart=always
+ExecStart=/usr/bin/node /home/mystoev/server/dist/index.js
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
