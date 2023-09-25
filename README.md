@@ -14,6 +14,7 @@ The backend API (GraphQL) runs on a Linux service and it uses Node.
 
 ## Tasks TODO
 
+- Add Unauthorized page
 - Setup infra using Ansible
 - Server should be Apollo GraphQL with Fastify integration. Set everything up without Fastify and then switch
 - Move schema to gql/graphql file
