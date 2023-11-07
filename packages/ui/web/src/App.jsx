@@ -5,7 +5,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 
 import { BME280Page, HomePage } from "./shared/pages";
 
@@ -29,7 +29,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const router = createMemoryRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <HomePage />,
