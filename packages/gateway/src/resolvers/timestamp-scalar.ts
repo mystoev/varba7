@@ -1,23 +1,20 @@
 import { GraphQLScalarType, Kind, ValueNode } from "graphql";
 
 const validateTimestampScalar = (value: unknown) => {
-  const utcOffsetMinutes = new Date().getTimezoneOffset();
-  const utcOffset = -utcOffsetMinutes * 60 * 1000;
-
   if (typeof value === "string" && !isNaN(+value)) {
-    return +value + utcOffset;
+    return +value;
   }
 
   if (typeof value === "number") {
-    return Math.trunc(value) + utcOffset;
+    return Math.trunc(value);
   }
 
   if (value instanceof Date) {
-    return value.getTime() + utcOffset;
+    return value.getTime();
   }
 
   if (typeof value === "string" && !isNaN(new Date(value).getTime())) {
-    return new Date(value).getTime() + utcOffset;
+    return new Date(value).getTime();
   }
 
   throw Error(
