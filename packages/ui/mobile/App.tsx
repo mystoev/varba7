@@ -9,14 +9,16 @@ import {sha256} from 'react-native-sha256';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {getUniqueId} from 'react-native-device-info';
+import {getUniqueId, isEmulatorSync} from 'react-native-device-info';
 
 import {BME280Page, HomePage} from './app/shared/pages';
 
 const httpLink = createHttpLink({
   uri:
     process.env.NODE_ENV !== 'production'
-      ? 'http://10.0.2.2:4000' //'http://176.12.23.79:6161'
+      ? isEmulatorSync()
+        ? 'http://10.0.2.2:4000'
+        : 'http://176.12.23.79:6161'
       : process.env.REACT_APP_GQL_SERVER,
 });
 
