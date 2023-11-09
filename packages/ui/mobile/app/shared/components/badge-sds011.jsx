@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
-import { format } from "date-fns";
 import { Text, View } from "react-native";
 
 import { GET_LATEST_SDS011 } from "../queries/latest-sds011";
 import { selectAirQualityColor } from "../selectors/color";
+import { toUTC } from "../selectors/utc";
 import { badgeStyles, headingStyles } from "../styles/text";
 
 const Badge_SDS011 = () => {
@@ -38,7 +38,7 @@ const Badge_SDS011 = () => {
           <Text style={headingStyles.h4}>
             At:{" "}
             <Text style={headingStyles.white}>
-              {format(data.latestSDS011.timestamp, "HH:mm, dd MMM yyyy")}
+              {toUTC(data.latestSDS011.timestamp, "HH:mm, dd MMM yyyy")}
             </Text>
           </Text>
         </>
