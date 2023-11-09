@@ -9,9 +9,9 @@ import resolvers from "./resolvers";
 import typeDefs from "./schema";
 
 dotenv.config({ path: __dirname + "/../.env.local" });
-const { MOBILE_TOKEN, TOKEN, APP_PORT } = process.env;
+const { NODE_ENV, MOBILE_TOKEN, TOKEN, APP_PORT } = process.env;
 
-const isProd = process.env.NODE_ENV === "production";
+const isProd = NODE_ENV === "production";
 
 const server = new ApolloServer({
   typeDefs,
