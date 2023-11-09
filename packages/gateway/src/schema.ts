@@ -18,6 +18,7 @@ const typeDefs = `#graphql
     latestSDS011: SDS011SensorData!
     latestBME280: BME280SensorData
     periodicBME280(startDate: String!, endDate: String!): [BME280SensorData]
+    monthsWithData: [String]!
   }
 `;
 

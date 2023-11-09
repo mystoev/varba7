@@ -35,4 +35,26 @@ export class PeriodicBME280Data {
 
     return result;
   }
+
+  async monthsWithData() {
+    const timestampToDate = {
+      $toDate: { $multiply: [{ $toLong: "$timestamp" }, 1000] },
+    };
+
+    const result = await BME280.aggregate([
+      {
+        $group: {
+          _id: {
+            $month: timestampToDate,
+          },
+          month: {
+            $first: timestampToDate,
+          },
+        },
+      },
+      { $sort: { _id: 1 } },
+    ]);
+
+    return result.map(({ month }) => new Date(month).toISOString());
+  }
 }
