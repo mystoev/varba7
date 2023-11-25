@@ -19,13 +19,13 @@ const Badge_Expenses = () => {
           <Text style={headingStyles.h2}>
             This Month:{' '}
             <Text style={headingStyles.white}>
-              {data?.badgeExpenses.month}лв
+              {data?.badgeExpenses.month.toLocaleString()}лв
             </Text>
           </Text>
           <Text style={headingStyles.h2}>
             This Year:{' '}
             <Text style={headingStyles.white}>
-              {data?.badgeExpenses.year}лв
+              {data?.badgeExpenses.year.toLocaleString()}лв
             </Text>
           </Text>
           <Text style={headingStyles.h4}>
