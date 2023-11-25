@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - "packages/ui/web/**"
+      - "packages/ui/mobile/app/**"
 
 defaults:
   run:
