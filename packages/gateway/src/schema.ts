@@ -23,12 +23,19 @@ const typeDefs = `#graphql
     to: String
   }
 
+  type BadgeExpense {
+    month: Float
+    year: Float
+    lastEntry: String
+  }
+
   type Query {
     latestSDS011: SDS011SensorData!
     latestBME280: BME280SensorData
     periodicBME280(startDate: String!, endDate: String!): [BME280SensorData]
     monthsWithData: [String]!
     expenses: [ExpenseEntry]!
+    badgeExpenses: BadgeExpense!
   }
 `;
 

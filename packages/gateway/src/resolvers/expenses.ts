@@ -9,3 +9,13 @@ export const allExpenses = async (
 ) => {
   return expensesAPI.all();
 };
+
+export const badgeExpenses = async (
+  _parent: any,
+  _args: any,
+  {
+    dataSources: { expensesAPI },
+  }: { dataSources: { expensesAPI: ExpensesAPI } }
+) => {
+  return expensesAPI.badge();
+};

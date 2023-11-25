@@ -3,28 +3,28 @@ import { parse } from "date-fns";
 import { createReadStream } from "fs";
 import { finished } from "stream/promises";
 
+const processFile = async () => {
+  const parser = createReadStream("./finances.csv").pipe(
+    csv.parse({
+      delimiter: ",",
+      columns: true,
+    })
+  );
+
+  const records = <any>[];
+  parser.on("readable", function () {
+    let record;
+    while ((record = parser.read()) !== null) {
+      records.push(record);
+    }
+  });
+
+  await finished(parser);
+  return records;
+};
+
 export class ExpensesAPI {
   async all() {
-    const processFile = async () => {
-      const parser = createReadStream("./finances.csv").pipe(
-        csv.parse({
-          delimiter: ",",
-          columns: true,
-        })
-      );
-
-      const records = <any>[];
-      parser.on("readable", function () {
-        let record;
-        while ((record = parser.read()) !== null) {
-          records.push(record);
-        }
-      });
-
-      await finished(parser);
-      return records;
-    };
-
     const rows = await processFile();
 
     const result = rows
@@ -39,5 +39,15 @@ export class ExpensesAPI {
       }));
 
     return result;
+  }
+
+  async badge() {
+    const rows = await processFile();
+
+    return {
+      month: 12,
+      year: 144,
+      lastEntry: "24 Nov 2023",
+    };
   }
 }
