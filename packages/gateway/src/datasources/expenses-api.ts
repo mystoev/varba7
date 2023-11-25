@@ -2,10 +2,12 @@ import csv from "csv-parse";
 import { format, parse } from "date-fns";
 import { enUS } from "date-fns/locale";
 import { createReadStream } from "fs";
+import { join } from "path";
 import { finished } from "stream/promises";
 
 const processFile = async () => {
-  const parser = createReadStream("./expenses.csv").pipe(
+  const data = join(__dirname, "expenses.csv");
+  const parser = createReadStream(data).pipe(
     csv.parse({
       delimiter: ",",
       columns: true,
