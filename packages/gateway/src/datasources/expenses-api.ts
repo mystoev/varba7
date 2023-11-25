@@ -1,5 +1,6 @@
 import csv from "csv-parse";
-import { parse } from "date-fns";
+import { format, parse } from "date-fns";
+import { enUS } from "date-fns/locale";
 import { createReadStream } from "fs";
 import { finished } from "stream/promises";
 
@@ -44,10 +45,28 @@ export class ExpensesAPI {
   async badge() {
     const rows = await processFile();
 
+    const now = new Date();
+    const thisYearEntries = rows.filter(
+      (row: any) => row.Date.split(now.getFullYear().toString()).length == 2
+    );
+
+    const year = thisYearEntries
+      .map((row: any) => (isNaN(+row.Amount) ? 0 : +row.Amount))
+      .reduce((acc: number, current: number) => acc + current, 0);
+
+    const thisMonth = format(now, "LLLL", { locale: enUS });
+    const thisMonthEntries = thisYearEntries.filter(
+      (row: any) => row.Date.split(" ")[0] === thisMonth
+    );
+
+    const month = thisMonthEntries
+      .map((row: any) => (isNaN(+row.Amount) ? 0 : +row.Amount))
+      .reduce((acc: number, current: number) => acc + current, 0);
+
     return {
-      month: 12,
-      year: 144,
-      lastEntry: "24 Nov 2023",
+      month,
+      year,
+      lastEntry: thisMonthEntries[0].Date,
     };
   }
 }
