@@ -5,7 +5,7 @@ import { createReadStream } from "fs";
 import { finished } from "stream/promises";
 
 const processFile = async () => {
-  const parser = createReadStream("./finances.csv").pipe(
+  const parser = createReadStream("./expenses.csv").pipe(
     csv.parse({
       delimiter: ",",
       columns: true,
