@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 
 import { GraphQLError } from "graphql";
 import { PeriodicBME280Data } from "./datasources/bme280-stats";
-import { FinancesAPI } from "./datasources/finances-api";
+import { ExpensesAPI } from "./datasources/expenses-api";
 import { WeatherSensorsAPI } from "./datasources/weather-sensors-api";
 import resolvers from "./resolvers";
 import typeDefs from "./schema";
@@ -42,7 +42,7 @@ export const start = async () => {
         dataSources: {
           weatherSensorsAPI: new WeatherSensorsAPI({ cache }),
           bme280Stats: new PeriodicBME280Data({ cache }),
-          financesAPI: new FinancesAPI(),
+          expensesAPI: new ExpensesAPI(),
         },
       };
     },

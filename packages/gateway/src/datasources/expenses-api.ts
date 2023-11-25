@@ -3,8 +3,8 @@ import { parse } from "date-fns";
 import { createReadStream } from "fs";
 import { finished } from "stream/promises";
 
-export class FinancesAPI {
-  async allTransactions() {
+export class ExpensesAPI {
+  async all() {
     const processFile = async () => {
       const parser = createReadStream("./finances.csv").pipe(
         csv.parse({

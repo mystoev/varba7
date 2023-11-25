@@ -14,7 +14,7 @@ const typeDefs = `#graphql
     humidity: Float!
   }
 
-  type FinanceEntry {
+  type ExpenseEntry {
     description: String
     amount: Float
     date: String
@@ -28,7 +28,7 @@ const typeDefs = `#graphql
     latestBME280: BME280SensorData
     periodicBME280(startDate: String!, endDate: String!): [BME280SensorData]
     monthsWithData: [String]!
-    finances: [FinanceEntry]!
+    expenses: [ExpenseEntry]!
   }
 `;
 
