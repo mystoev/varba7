@@ -18,7 +18,13 @@ export const setupMongo = async () => {
     `mongodb+srv://${MONGODB_USER}:${MONGODB_PASS}@cluster0.tl0wald.mongodb.net/${MONGODB_NAME}?retryWrites=true&w=majority`
   );
 
-  const test = new Expense({ description: "asdf" });
+  const test = new Expense({
+    description: "asdf",
+    amount: 53,
+    date: "November 28, 2023",
+    tags: "test,2",
+    to: "ccb",
+  });
   await test.save();
 
   mongoose.connection.close();
