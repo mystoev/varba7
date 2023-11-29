@@ -13,5 +13,25 @@ export const BME280 = model<IBME280>(
     temperature: { type: Number },
     humidity: { type: Number },
   }),
-  "stats"
+  "weather"
+);
+
+interface IExpense {
+  description: String;
+  amount: number;
+  date: String;
+  tags: String;
+  to: String;
+}
+
+export const Expense = model<IExpense>(
+  "expense",
+  new Schema<IExpense>({
+    description: { type: String },
+    amount: { type: Number },
+    date: { type: String },
+    tags: { type: String },
+    to: { type: String },
+  }),
+  "expenses"
 );
