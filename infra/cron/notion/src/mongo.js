@@ -1,31 +1,50 @@
 import "dotenv/config";
 import mongoose from "mongoose";
+import { Expense, Sync } from "./models.js";
 
 export const setupMongo = async () => {
   const { MONGODB_NAME, MONGODB_USER, MONGODB_PASS } = process.env;
 
-  const expenseSchema = mongoose.Schema({
-    description: String,
-    amount: Number,
-    date: String,
-    tags: String,
-    to: String,
-  });
-
-  const Expense = mongoose.model("expense", expenseSchema, "family");
-
+  console.log("Setting up mongo connection...");
   await mongoose.connect(
     `mongodb+srv://${MONGODB_USER}:${MONGODB_PASS}@cluster0.tl0wald.mongodb.net/${MONGODB_NAME}?retryWrites=true&w=majority`
   );
+};
 
-  const test = new Expense({
-    description: "asdf",
-    amount: 53,
-    date: "November 28, 2023",
-    tags: "test,2",
-    to: "ccb",
+export const getLastSyncId = async () => {
+  console.log("Getting last sync ID...");
+  const hasSync = await Sync.findOne({});
+
+  if (hasSync == null) {
+    console.log("No last sync id. Syncing for the first time...");
+    return null;
+  }
+  console.log(`Last sync id: ${lastSyncId}`);
+  return hasSync.lastSyncId;
+};
+
+export const storeNewSyncId = async (id) => {
+  await Sync.updateOne(
+    { id: "1" },
+    { id: "1", lastSyncId: id },
+    { upsert: true }
+  );
+  console.log(`Last sync id stored: ${id}`);
+};
+
+export const storeExpenses = async (expenses) => {
+  console.log(`Storing ${expenses.length} new expenses...`);
+
+  const promises = expenses.map((expense) => {
+    const test = new Expense(expense);
+    return test.save();
   });
-  await test.save();
 
+  await Promise.all(promises);
+  console.log("All expenses saved to db!");
+};
+
+export const closeMongo = () => {
+  console.log("Closing mongo connection...");
   mongoose.connection.close();
 };
