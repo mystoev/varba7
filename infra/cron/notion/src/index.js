@@ -12,8 +12,12 @@ import { getLatestExpenses } from "./notion.js";
   const id = await getLastSyncId();
   const { expenses, newSyncId } = await getLatestExpenses(id);
 
-  await storeExpenses(expenses);
-  await storeNewSyncId(newSyncId);
+  if (expenses.length > 0) {
+    await storeExpenses(expenses);
+    await storeNewSyncId(newSyncId);
+  } else {
+    console.log("Nothing new to sync!");
+  }
 
   closeMongo();
 })();

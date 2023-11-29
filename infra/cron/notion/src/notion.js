@@ -48,8 +48,8 @@ const processExpenses = async (pages, lastSyncId) => {
     ]);
 
     expenses.push({
-      description: description.results[0].title.plain_text,
-      amount: amount.number,
+      description: description.results?.[0]?.title?.plain_text,
+      amount: amount?.number,
       date: date.date?.start,
       tags: tags.multi_select?.map((o) => o.name).join(","),
       to: to.select?.name,
@@ -64,6 +64,7 @@ export const getLatestExpenses = async (lastSyncId) => {
   let newSyncId = null;
   let cursor = undefined;
   const shouldContinue = true;
+
   while (shouldContinue) {
     console.log("Getting next batch of Notion pages...");
     const { results, next_cursor } = await notion.databases.query({
@@ -79,15 +80,17 @@ export const getLatestExpenses = async (lastSyncId) => {
     const resultsToProcess = [];
     for (let index = 0; index < results.length; index++) {
       const result = results[index];
-      resultsToProcess.push(result);
       if (result.id === lastSyncId) {
         fullySynced = true;
         break;
       }
+
+      resultsToProcess.push(result);
     }
 
     const result = await processExpenses(resultsToProcess, lastSyncId);
     expenses.push(...result);
+
     if (!next_cursor || fullySynced) {
       break;
     }

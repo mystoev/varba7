@@ -19,7 +19,7 @@ export const getLastSyncId = async () => {
     console.log("No last sync id. Syncing for the first time...");
     return null;
   }
-  console.log(`Last sync id: ${lastSyncId}`);
+  console.log(`Last sync id: ${hasSync.lastSyncId}`);
   return hasSync.lastSyncId;
 };
 
