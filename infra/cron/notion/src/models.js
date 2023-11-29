@@ -8,11 +8,11 @@ const expenseSchema = Schema({
   to: String,
 });
 
-export const Expense = model("expense", expenseSchema, "entry");
+export const Expense = model("expense", expenseSchema, "expenses");
 
 const syncSchema = Schema({
   id: String,
   lastSyncId: String,
 });
 
-export const Sync = model("sync", syncSchema, "sync");
+export const Sync = model("sync", syncSchema, "expenses-sync");
