@@ -21,17 +21,17 @@ export class PeriodicBME280Data {
   }
 
   async periodicBME280(startDate: number, endDate: number) {
-    const cacheKey = `BME280-${startDate}-${endDate}`;
-    const cacheObject = await this.cache.get(cacheKey);
-    if (cacheObject) {
-      return JSON.parse(cacheObject);
-    }
+    // const cacheKey = `BME280-${startDate}-${endDate}`;
+    // const cacheObject = await this.cache.get(cacheKey);
+    // if (cacheObject) {
+    //   return JSON.parse(cacheObject);
+    // }
 
     const result = await BME280.find({
       timestamp: { $gt: startDate, $lt: endDate },
     });
 
-    this.cache.set(cacheKey, JSON.stringify(result), { ttl: msTillNextHour() });
+    // this.cache.set(cacheKey, JSON.stringify(result), { ttl: msTillNextHour() });
 
     return result;
   }
