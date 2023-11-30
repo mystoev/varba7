@@ -15,7 +15,7 @@ export class ExpensesAPI {
   }
 
   async badge() {
-    const expenses = await Expense.find({});
+    const expenses = await Expense.find({}, {}, { sort: { date: -1 } });
 
     const now = new Date();
     const thisYearEntries = expenses
