@@ -1,5 +1,12 @@
 import { Client } from "@notionhq/client";
+import * as dotnev from "dotenv";
 import "dotenv/config";
+import { join } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const path = join(__filename, "../../");
+dotnev.config({ path: join(path, ".env") });
 
 const { NOTION_TOKEN, NOTION_EXPENSES_ID } = process.env;
 

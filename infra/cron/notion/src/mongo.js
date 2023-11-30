@@ -1,6 +1,12 @@
-import "dotenv/config";
+import * as dotnev from "dotenv";
 import mongoose from "mongoose";
+import { join } from "path";
+import { fileURLToPath } from "url";
 import { Expense, Sync } from "./models.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const path = join(__filename, "../../");
+dotnev.config({ path: join(path, ".env") });
 
 export const setupMongo = async () => {
   const { MONGODB_NAME, MONGODB_USER, MONGODB_PASS } = process.env;
