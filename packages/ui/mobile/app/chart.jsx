@@ -1,12 +1,13 @@
 import {format} from 'date-fns';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View, processColor} from 'react-native';
 import {BarChart} from 'react-native-charts-wrapper';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    height: 400,
+    margin: 10,
   },
   chart: {
     flex: 1,
@@ -18,19 +19,28 @@ const Chart = ({data}) => {
   const temperatures = data.map(d => d.temperature);
 
   return (
-    <View style={{flex: 1}}>
+    <ScrollView style={{flex: 1}}>
       <View style={styles.container}>
         <BarChart
           style={styles.chart}
           xAxis={{
             valueFormatter: dates,
+            granularity: 1,
           }}
           data={{
-            dataSets: [{label: 'Temperature', values: temperatures}],
+            dataSets: [
+              {
+                label: 'Temperature',
+                values: temperatures,
+                config: {
+                  colors: [processColor('orangered')],
+                },
+              },
+            ],
           }}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
