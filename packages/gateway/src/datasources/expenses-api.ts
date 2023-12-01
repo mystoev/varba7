@@ -44,7 +44,7 @@ export class ExpensesAPI {
     return {
       month,
       year,
-      lastEntry: thisMonthEntries[0].Date,
+      lastEntry: thisMonthEntries?.[0]?.Date ?? 0,
     };
   }
 }
