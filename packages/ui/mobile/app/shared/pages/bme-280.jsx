@@ -1,5 +1,5 @@
 import {useQuery} from '@apollo/client';
-import {add, format} from 'date-fns';
+import {add, format, parse} from 'date-fns';
 import {useState} from 'react';
 
 import {View} from 'react-native';
@@ -26,12 +26,15 @@ export const BME280Page = () => {
     data && (
       <View>
         <MonthDropdown
-          selectedMonth={startDate}
+          selectedMonth={format(
+            parse(startDate, 'yyyy-MM-dd', new Date()),
+            'MMM yyyy',
+          )}
           onSelectItem={month => {
-            const nextMonth = add(month, {months: 1});
-
             const sD = format(month, 'yyyy-MM') + '-1';
             setStartDate(sD);
+
+            const nextMonth = add(month, {months: 1});
             const eD = format(nextMonth, 'yyyy-MM') + '-1';
             setEndDate(eD);
           }}

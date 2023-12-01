@@ -21,7 +21,6 @@ export const MonthDropdown = ({onSelectItem, selectedMonth}) => {
 
     months.reverse();
     setItems(months);
-    setValue(selectedMonth);
   }, [data]);
 
   const [open, setOpen] = useState(false);
@@ -40,7 +39,7 @@ export const MonthDropdown = ({onSelectItem, selectedMonth}) => {
         onSelectItem={e => {
           onSelectItem?.(parseISO(e.value));
         }}
-        placeholder={'Choose a month'}
+        placeholder={value}
       />
     </View>
   );
