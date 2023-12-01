@@ -19,7 +19,7 @@ const Chart = ({data}) => {
   const temperatures = data.map(d => d.temperature);
 
   return (
-    <ScrollView style={{flex: 1}}>
+    <ScrollView>
       <View style={styles.container}>
         <BarChart
           style={styles.chart}
