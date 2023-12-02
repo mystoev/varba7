@@ -18,5 +18,17 @@ export const maxTemperatures = data => {
     }
   });
 
-  return Object.values(temperaturesByDay);
+  const result = Object.values(temperaturesByDay);
+
+  result.sort((a, b) => {
+    if (a.timestamp < b.timestamp) {
+      return -1;
+    } else if (a.timestamp > b.timestamp) {
+      return 1;
+    }
+
+    return 0;
+  });
+
+  return result;
 };
