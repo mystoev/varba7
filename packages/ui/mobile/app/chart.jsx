@@ -1,7 +1,10 @@
+import {useQuery} from '@apollo/client';
 import {format} from 'date-fns';
 import React from 'react';
 import {ScrollView, StyleSheet, View, processColor} from 'react-native';
 import {BarChart} from 'react-native-charts-wrapper';
+import {GET_PERIODIC_BME280} from './shared/queries/periodic-bme280';
+import {maxTemperatures} from './shared/selectors/temperature';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,9 +17,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const Chart = ({data}) => {
-  const dates = data.map(d => format(d.timestamp, 'd'));
-  const temperatures = data.map(d => d.temperature);
+const Chart = ({startDate, endDate}) => {
+  const {data} = useQuery(GET_PERIODIC_BME280, {
+    variables: {startDate, endDate},
+  });
+
+  if (!data) {
+    return null;
+  }
+
+  const maxTemps = maxTemperatures(data.periodicBME280, startDate, endDate);
 
   return (
     <ScrollView>
@@ -24,14 +34,14 @@ const Chart = ({data}) => {
         <BarChart
           style={styles.chart}
           xAxis={{
-            valueFormatter: dates,
+            valueFormatter: maxTemps.map(d => format(d.timestamp, 'd')),
             granularity: 1,
           }}
           data={{
             dataSets: [
               {
                 label: 'Temperature',
-                values: temperatures,
+                values: maxTemps.map(d => d.temperature),
                 config: {
                   colors: [processColor('orangered')],
                 },
