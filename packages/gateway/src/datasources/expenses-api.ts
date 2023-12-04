@@ -47,4 +47,8 @@ export class ExpensesAPI {
       lastEntry: thisMonthEntries?.[0]?.Date ?? 0,
     };
   }
+
+  async lastYear() {
+    return [{ month: "Jan 2023", amount: 930 }];
+  }
 }

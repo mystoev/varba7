@@ -19,3 +19,13 @@ export const badgeExpenses = async (
 ) => {
   return expensesAPI.badge();
 };
+
+export const lastYearExpenses = async (
+  _parent: any,
+  _args: any,
+  {
+    dataSources: { expensesAPI },
+  }: { dataSources: { expensesAPI: ExpensesAPI } }
+) => {
+  return expensesAPI.lastYear();
+};

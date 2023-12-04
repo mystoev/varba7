@@ -22,3 +22,12 @@ export const GET_BADGE_EXPENSES = gql`
     }
   }
 `;
+
+export const GET_LAST_12_MONTHS = gql`
+  query Query {
+    lastYearExpenses {
+      month
+      amount
+    }
+  }
+`;

@@ -29,6 +29,11 @@ const typeDefs = `#graphql
     lastEntry: String
   }
 
+  type LastYearExpense {
+    month: String,
+    amount: Float
+  }
+
   type Query {
     latestSDS011: SDS011SensorData!
     latestBME280: BME280SensorData
@@ -36,6 +41,7 @@ const typeDefs = `#graphql
     monthsWithData: [String]!
     expenses: [ExpenseEntry]!
     badgeExpenses: BadgeExpense!
+    lastYearExpenses: [LastYearExpense]
   }
 `;
 
