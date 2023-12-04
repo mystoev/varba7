@@ -11,7 +11,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {getUniqueId, isEmulatorSync} from 'react-native-device-info';
 
-import {BME280Page, HomePage} from './app/shared/pages';
+import {BME280Page, ExpensesPage, HomePage} from './app/shared/pages';
 
 const httpLink = createHttpLink({
   uri:
@@ -54,6 +54,11 @@ const App = () => (
           name="bme280"
           component={BME280Page}
           options={{title: 'BME280 History'}}
+        />
+        <Stack.Screen
+          name="expenses"
+          component={ExpensesPage}
+          options={{title: 'Expenses Report'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
