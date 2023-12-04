@@ -1,15 +1,15 @@
 import {useQuery} from '@apollo/client';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 
+import ExpensesChart from '../../expenses-chart';
 import {GET_LAST_12_MONTHS} from '../queries/expenses';
 
 export const ExpensesPage = () => {
   const {loading, error, data} = useQuery(GET_LAST_12_MONTHS);
-  console.log(data?.lastYearExpenses);
 
   return (
     <View>
-      <Text>Expenses Page</Text>
+      {data && <ExpensesChart lastYearExpenses={data.lastYearExpenses} />}
     </View>
   );
 };

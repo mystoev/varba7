@@ -62,7 +62,6 @@ export class ExpensesAPI {
     for (let index = 1; index <= 12; index++) {
       const now = new Date();
       now.setMonth(now.getMonth() - index);
-      console.log(now.getMonth());
 
       const currentMonth = now.getMonth() + 1;
       const currentYear = now.getFullYear();
