@@ -49,6 +49,36 @@ export class ExpensesAPI {
   }
 
   async lastYear() {
-    return [{ month: "Jan 2023", amount: 930 }];
+    const expenses = await Expense.find({}, {}, { sort: { date: -1 } });
+
+    const entries = expenses
+      .filter((r) => r.date != null)
+      .map((r) => ({
+        Date: r.date,
+        Amount: r.amount,
+      }));
+
+    const result = [];
+    for (let index = 1; index <= 12; index++) {
+      const now = new Date();
+      now.setMonth(now.getMonth() - index);
+      console.log(now.getMonth());
+
+      const currentMonth = now.getMonth() + 1;
+      const currentYear = now.getFullYear();
+
+      const thisMonthEntries = entries.filter((row: any) => {
+        const [year, month] = row.Date.split("-");
+        return +month === currentMonth && +year === currentYear;
+      });
+
+      const amount = thisMonthEntries
+        .map((row: any) => (isNaN(+row.Amount) ? 0 : +row.Amount))
+        .reduce((acc: number, current: number) => acc + current, 0);
+
+      result.push({ month: now.toISOString(), amount });
+    }
+
+    return result;
   }
 }
