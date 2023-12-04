@@ -36,6 +36,7 @@ const Chart = ({startDate, endDate}) => {
     <ScrollView>
       <View style={styles.container}>
         <BarChart
+          chartDescription={{text: ''}}
           style={styles.chart}
           xAxis={{
             valueFormatter: maxTemps.map(d => format(d.timestamp, 'd')),
@@ -48,12 +49,14 @@ const Chart = ({startDate, endDate}) => {
                 values: maxTemps.map(d => d.temperature),
                 config: {
                   colors: [processColor('orangered')],
+                  valueTextSize: 10,
                 },
               },
             ],
           }}
         />
         <BarChart
+          chartDescription={{text: ''}}
           style={styles.chart}
           xAxis={{
             valueFormatter: avgTemps.map(d => format(d.timestamp, 'd')),
@@ -66,6 +69,7 @@ const Chart = ({startDate, endDate}) => {
                 values: avgTemps.map(d => d.temperature),
                 config: {
                   colors: [processColor('green')],
+                  valueTextSize: 10,
                 },
               },
             ],

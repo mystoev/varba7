@@ -1,6 +1,6 @@
 import {format} from 'date-fns';
 
-const byTimestamp = (a, b) =>
+const sortByTimestamp = (a, b) =>
   a.timestamp < b.timestamp ? -1 : a.timestamp > b.timestamp ? 1 : 0;
 
 export const maxTemperatures = data => {
@@ -23,7 +23,7 @@ export const maxTemperatures = data => {
 
   const result = Object.values(temperaturesByDay);
 
-  result.sort(byTimestamp);
+  result.sort(sortByTimestamp);
 
   return result;
 };
@@ -51,13 +51,10 @@ export const averageTemperatures = data => {
 
   const result = Object.values(temperaturesByDay);
 
-  result.sort(byTimestamp);
+  result.sort(sortByTimestamp);
 
-  console.log(result);
-  return result.map(r => {
-    return {
-      timestamp: r.timestamp,
-      temperature: r.temperature / r.count,
-    };
-  });
+  return result.map(r => ({
+    timestamp: r.timestamp,
+    temperature: r.temperature / r.count,
+  }));
 };
