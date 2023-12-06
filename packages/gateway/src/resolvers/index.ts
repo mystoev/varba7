@@ -1,6 +1,11 @@
 import { Timestamp } from "./timestamp-scalar";
 
-import { allExpenses, badgeExpenses, lastYearExpenses } from "./expenses";
+import {
+  allExpenses,
+  badgeExpenses,
+  lastYearExpenses,
+  topCategories,
+} from "./expenses";
 import { latestBME280 } from "./latest-bme280";
 import { latestSDS011 } from "./latest-sds011";
 import { monthsWithData } from "./months-with-data";
@@ -16,6 +21,7 @@ const resolvers = {
     expenses: allExpenses,
     badgeExpenses,
     lastYearExpenses,
+    topCategories,
   },
 };
 

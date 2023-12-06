@@ -29,3 +29,13 @@ export const lastYearExpenses = async (
 ) => {
   return expensesAPI.lastYear();
 };
+
+export const topCategories = async (
+  _parent: any,
+  _args: any,
+  {
+    dataSources: { expensesAPI },
+  }: { dataSources: { expensesAPI: ExpensesAPI } }
+) => {
+  return expensesAPI.topCategories();
+};

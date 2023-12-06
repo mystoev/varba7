@@ -34,6 +34,12 @@ const typeDefs = `#graphql
     amount: Float
   }
 
+  type TopCategoriesResult {
+    date: String
+    amount: Float
+    tags: [String]
+  }
+
   type Query {
     latestSDS011: SDS011SensorData!
     latestBME280: BME280SensorData
@@ -42,6 +48,7 @@ const typeDefs = `#graphql
     expenses: [ExpenseEntry]!
     badgeExpenses: BadgeExpense!
     lastYearExpenses: [LastYearExpense]
+    topCategories: [TopCategoriesResult]
   }
 `;
 

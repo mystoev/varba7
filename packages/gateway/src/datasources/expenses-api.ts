@@ -66,16 +66,45 @@ export class ExpensesAPI {
       const currentMonth = now.getMonth() + 1;
       const currentYear = now.getFullYear();
 
-      const thisMonthEntries = entries.filter((row: any) => {
+      const currentMonthEntries = entries.filter((row: any) => {
         const [year, month] = row.Date.split("-");
         return +month === currentMonth && +year === currentYear;
       });
 
-      const amount = thisMonthEntries
+      const amount = currentMonthEntries
         .map((row: any) => (isNaN(+row.Amount) ? 0 : +row.Amount))
         .reduce((acc: number, current: number) => acc + current, 0);
 
       result.push({ month: now.toISOString(), amount });
+    }
+
+    return result;
+  }
+
+  async topCategories() {
+    const expenses = await Expense.find({}, {}, { sort: { date: -1 } });
+
+    const entries = expenses
+      .filter((r) => r.date != null)
+      .map((r) => ({
+        date: r.date,
+        amount: r.amount,
+        tags: r.tags.split(","),
+      }));
+
+    const result = [];
+    for (let index = 1; index <= 12; index++) {
+      const now = new Date();
+      now.setMonth(now.getMonth() - index);
+
+      const currentMonth = now.getMonth() + 1;
+      const currentYear = now.getFullYear();
+      const currentMonthEntries = entries.filter((row: any) => {
+        const [year, month] = row.date.split("-");
+        return +month === currentMonth && +year === currentYear;
+      });
+
+      result.push(...currentMonthEntries);
     }
 
     return result;
