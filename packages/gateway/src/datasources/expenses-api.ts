@@ -59,7 +59,7 @@ export class ExpensesAPI {
       }));
 
     const result = [];
-    for (let index = 1; index <= 12; index++) {
+    for (let index = 0; index < 12; index++) {
       const now = new Date();
       now.setMonth(now.getMonth() - index);
 
