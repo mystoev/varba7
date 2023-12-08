@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_ALL_EXPENSES = gql`
   query Query {
@@ -23,11 +23,20 @@ export const GET_BADGE_EXPENSES = gql`
   }
 `;
 
-export const GET_LAST_12_MONTHS = gql`
+export const LAST_YEAR_EXPENSES = gql`
   query Query {
     lastYearExpenses {
       month
       amount
+    }
+  }
+`;
+
+export const GET_LAST_12_MONTHS = gql`
+  query Query {
+    topCategories {
+      amount
+      tags
     }
   }
 `;

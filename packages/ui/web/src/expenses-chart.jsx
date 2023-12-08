@@ -25,12 +25,7 @@ const ExpensesChart = ({ lastYearExpenses }) => {
   return (
     <ScrollView>
       <View>
-        <BarChart
-          data={data}
-          width={800}
-          height={400}
-          style={{ margin: "auto", marginTop: 10 }}
-        >
+        <BarChart data={data} width={800} height={400}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey="month"
