@@ -1,11 +1,12 @@
 import { format, parseISO } from "date-fns";
 import React from "react";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import {
   Bar,
   BarChart,
   CartesianGrid,
   ReferenceLine,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -23,8 +24,8 @@ const ExpensesChart = ({ lastYearExpenses }) => {
     .reduce((avg, value, _, { length }) => avg + value / length, 0);
 
   return (
-    <ScrollView>
-      <View>
+    <View>
+      <ResponsiveContainer width="100%" aspect={1.0 / 0.4}>
         <BarChart data={data} width={800} height={400}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
@@ -38,8 +39,8 @@ const ExpensesChart = ({ lastYearExpenses }) => {
           <Bar dataKey={"amount"} fill={"royalblue"} />
           <ReferenceLine y={average} stroke="red" label={average.toFixed(2)} />
         </BarChart>
-      </View>
-    </ScrollView>
+      </ResponsiveContainer>
+    </View>
   );
 };
 

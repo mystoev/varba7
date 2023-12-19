@@ -1,10 +1,18 @@
-import { ScrollView, View } from "react-native";
-import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
+import { View } from "react-native";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 const TopCategoriesChart = ({ data }) => {
   return (
-    <ScrollView>
-      <View>
+    <View>
+      <ResponsiveContainer width="100%" aspect={1.0 / 0.4}>
         <BarChart data={data} width={800} height={400}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="category" />
@@ -12,8 +20,8 @@ const TopCategoriesChart = ({ data }) => {
           <Tooltip />
           <Bar dataKey={"amount"} fill={"dodgerblue"} />
         </BarChart>
-      </View>
-    </ScrollView>
+      </ResponsiveContainer>
+    </View>
   );
 };
 

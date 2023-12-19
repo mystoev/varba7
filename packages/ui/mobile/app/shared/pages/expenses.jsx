@@ -8,8 +8,7 @@ import { getByCategory } from "../selectors/expenses";
 
 const styles = StyleSheet.create({
   container: {
-    width: 800,
-    margin: "auto",
+    margin: 10,
   },
   h1: {
     fontSize: 24,

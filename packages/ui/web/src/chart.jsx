@@ -30,14 +30,9 @@ const Chart = ({ startDate, endDate }) => {
   const avgTemps = averageTemperatures(data.periodicBME280, startDate, endDate);
 
   return (
-    <View>
+    <View style={{ margin: 10 }}>
       <ResponsiveContainer width="100%" aspect={1.0 / 0.4}>
-        <BarChart
-          data={maxTemps}
-          width={800}
-          height={400}
-          style={{ margin: "auto", marginTop: 10 }}
-        >
+        <BarChart data={maxTemps}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey="timestamp"
@@ -49,12 +44,7 @@ const Chart = ({ startDate, endDate }) => {
         </BarChart>
       </ResponsiveContainer>
       <ResponsiveContainer width="100%" aspect={1.0 / 0.4}>
-        <BarChart
-          data={avgTemps}
-          width={800}
-          height={400}
-          style={{ margin: "auto", marginTop: 10 }}
-        >
+        <BarChart data={avgTemps}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey="timestamp"
