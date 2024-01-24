@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { format } from "date-fns";
 import React from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import {
   Bar,
   BarChart,
@@ -16,6 +16,7 @@ import {
   averageTemperatures,
   maxTemperatures,
 } from "./shared/selectors/temperature";
+import { headingStyles } from "./shared/styles/text";
 
 const Chart = ({ startDate, endDate }) => {
   const { data } = useQuery(GET_PERIODIC_BME280, {
@@ -31,6 +32,7 @@ const Chart = ({ startDate, endDate }) => {
 
   return (
     <View style={{ margin: 10 }}>
+      <Text style={headingStyles.h2Left}>Max Temperatures</Text>
       <ResponsiveContainer width="100%" aspect={1.0 / 0.4}>
         <BarChart data={maxTemps}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -43,6 +45,7 @@ const Chart = ({ startDate, endDate }) => {
           <Bar dataKey={"temperature"} fill={"orangered"} />
         </BarChart>
       </ResponsiveContainer>
+      <Text style={headingStyles.h2Left}>Average Temperatures</Text>
       <ResponsiveContainer width="100%" aspect={1.0 / 0.4}>
         <BarChart data={avgTemps}>
           <CartesianGrid strokeDasharray="3 3" />
