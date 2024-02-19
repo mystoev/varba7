@@ -1,49 +1,97 @@
-import {useQuery} from '@apollo/client';
-import {Pressable, Text, View} from 'react-native';
+import { useQuery } from "@apollo/client";
 
-import {useSharedNavigation} from '../../navigation';
-import {GET_BADGE_EXPENSES} from '../queries/expenses';
-import {badgeStyles, headingStyles} from '../styles/text';
+import { useSharedNavigation } from "../../navigation";
+import { GET_BADGE_EXPENSES } from "../queries/expenses";
 
 const Badge_Expenses = () => {
-  const {loading, error, data} = useQuery(GET_BADGE_EXPENSES);
-  const {navigate} = useSharedNavigation();
+  const { loading, error, data } = useQuery(GET_BADGE_EXPENSES);
+  const { navigate } = useSharedNavigation();
 
   if (error) return <Text>Error : {error.message}</Text>;
 
   return (
-    <Pressable
-      onPress={() => {
-        navigate('expenses');
-      }}>
-      <View style={[badgeStyles.container, {backgroundColor: 'royalblue'}]}>
-        <Text style={headingStyles.h1}>Expenses</Text>
+    <div
+      onClick={() => {
+        navigate("expenses");
+      }}
+    >
+      <div
+        style={{
+          marginTop: 20,
+          backgroundColor: "royalblue",
+          width: "90%",
+          alignSelf: "center",
+          margin: "auto",
+          borderRadius: 5,
+        }}
+      >
+        <p
+          style={{
+            fontSize: 32,
+            fontWeight: "bold",
+            color: "black",
+            textAlign: "center",
+            paddingTop: 10,
+          }}
+        >
+          Expenses
+        </p>
         {loading ? (
-          <Text style={headingStyles.loading}>Loading...</Text>
+          <p
+            style={{
+              textAlign: "center",
+              padding: 10,
+            }}
+          >
+            Loading...
+          </p>
         ) : (
           <>
-            <Text style={headingStyles.h2}>
-              This Month:{' '}
-              <Text style={headingStyles.white}>
+            <p
+              style={{
+                fontWeight: "bold",
+                textAlign: "center",
+                padding: 5,
+                fontSize: 24,
+                color: "#d3d3d3",
+              }}
+            >
+              This Month:{" "}
+              <span style={{ color: "white" }}>
                 {data?.badgeExpenses.month.toLocaleString()}лв
-              </Text>
-            </Text>
-            <Text style={headingStyles.h2}>
-              This Year:{' '}
-              <Text style={headingStyles.white}>
+              </span>
+            </p>
+            <p
+              style={{
+                fontWeight: "bold",
+                textAlign: "center",
+                padding: 5,
+                fontSize: 24,
+                color: "#d3d3d3",
+              }}
+            >
+              This Year:{" "}
+              <span style={{ color: "white" }}>
                 {data?.badgeExpenses.year.toLocaleString()}лв
-              </Text>
-            </Text>
-            <Text style={headingStyles.h4}>
-              Last entry:{' '}
-              <Text style={headingStyles.white}>
+              </span>
+            </p>
+            <p
+              style={{
+                fontWeight: "bold",
+                textAlign: "center",
+                color: "#d3d3d3",
+                padding: 5,
+              }}
+            >
+              Last entry:{" "}
+              <span style={{ color: "white" }}>
                 {data?.badgeExpenses.lastEntry}
-              </Text>
-            </Text>
+              </span>
+            </p>
           </>
         )}
-      </View>
-    </Pressable>
+      </div>
+    </div>
   );
 };
 

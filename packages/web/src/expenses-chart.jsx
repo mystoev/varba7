@@ -1,6 +1,5 @@
 import { format, parseISO } from "date-fns";
 import React from "react";
-import { View } from "react-native";
 import {
   Bar,
   BarChart,
@@ -24,7 +23,7 @@ const ExpensesChart = ({ lastYearExpenses }) => {
     .reduce((avg, value, _, { length }) => avg + value / length, 0);
 
   return (
-    <View>
+    <div>
       <ResponsiveContainer width="100%" aspect={1.0 / 0.4}>
         <BarChart data={data} width={800} height={400}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -40,7 +39,7 @@ const ExpensesChart = ({ lastYearExpenses }) => {
           <ReferenceLine y={average} stroke="red" label={average.toFixed(2)} />
         </BarChart>
       </ResponsiveContainer>
-    </View>
+    </div>
   );
 };
 

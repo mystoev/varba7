@@ -1,56 +1,101 @@
 import { useQuery } from "@apollo/client";
-import { Pressable, Text, View } from "react-native";
 
 import { useSharedNavigation } from "../../navigation";
 import { GET_LATEST_BME280 } from "../queries/latest-bme280";
 import { selectTemperatureColor } from "../selectors/color";
 import { toUTC } from "../selectors/utc";
-import { badgeStyles, headingStyles } from "../styles/text";
 
 const Badge_BME280 = () => {
   const { loading, error, data } = useQuery(GET_LATEST_BME280);
   const { navigate } = useSharedNavigation();
 
-  if (error) return <Text>Error : {error.message}</Text>;
+  if (error) return <p>Error : {error.message}</p>;
 
   const backgroundColor = selectTemperatureColor(
     data?.latestBME280?.temperature
   );
 
   return (
-    <Pressable
-      onPress={() => {
+    <div
+      onClick={() => {
         navigate("bme280");
       }}
     >
-      <View style={[badgeStyles.container, { backgroundColor }]}>
-        <Text style={headingStyles.h1}>Weather</Text>
+      <div
+        style={{
+          marginTop: 20,
+          backgroundColor,
+          width: "90%",
+          alignSelf: "center",
+          margin: "auto",
+          borderRadius: 5,
+        }}
+      >
+        <p
+          style={{
+            fontSize: 32,
+            fontWeight: "bold",
+            color: "black",
+            textAlign: "center",
+            paddingTop: 10,
+          }}
+        >
+          Weather
+        </p>
         {loading ? (
-          <Text style={headingStyles.loading}>Loading...</Text>
+          <p
+            style={{
+              textAlign: "center",
+              padding: 10,
+            }}
+          >
+            Loading...
+          </p>
         ) : (
           <>
-            <Text style={headingStyles.h2}>
-              Temperature:{" "}
-              <Text style={headingStyles.white}>
-                {data.latestBME280.temperature} °C
-              </Text>
-            </Text>
-            <Text style={headingStyles.h2}>
+            <p
+              style={{
+                fontWeight: "bold",
+                textAlign: "center",
+                padding: 5,
+                fontSize: 24,
+                color: "#d3d3d3",
+              }}
+            >
+              Temperature:
+              <span>{data.latestBME280.temperature} °C</span>
+            </p>
+            <p
+              style={{
+                fontWeight: "bold",
+                textAlign: "center",
+                padding: 5,
+                fontSize: 24,
+                color: "#d3d3d3",
+              }}
+            >
               Humidity:{" "}
-              <Text style={headingStyles.white}>
+              <span style={{ color: "white" }}>
                 {data.latestBME280.humidity} %
-              </Text>
-            </Text>
-            <Text style={headingStyles.h4}>
-              At:{" "}
-              <Text style={headingStyles.white}>
+              </span>
+            </p>
+            <p
+              style={{
+                fontWeight: "bold",
+                textAlign: "center",
+                color: "#d3d3d3",
+                padding: 5,
+              }}
+            >
+              At:
+              <span style={{ color: "white" }}>
                 {toUTC(data.latestBME280.timestamp, "HH:mm, dd MMM yyyy")}
-              </Text>
-            </Text>
+              </span>
+            </p>
           </>
         )}
-      </View>
-    </Pressable>
+      </div>
+    </div>
   );
 };
 

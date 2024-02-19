@@ -1,4 +1,3 @@
-import { View } from "react-native";
 import {
   Bar,
   BarChart,
@@ -11,7 +10,7 @@ import {
 
 const TopCategoriesChart = ({ data }) => {
   return (
-    <View>
+    <div>
       <ResponsiveContainer width="100%" aspect={1.0 / 0.4}>
         <BarChart data={data} width={800} height={400}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -21,7 +20,7 @@ const TopCategoriesChart = ({ data }) => {
           <Bar dataKey={"amount"} fill={"dodgerblue"} />
         </BarChart>
       </ResponsiveContainer>
-    </View>
+    </div>
   );
 };
 
