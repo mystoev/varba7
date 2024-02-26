@@ -6,12 +6,11 @@ on:
     branches:
       - main
     paths:
-      - "packages/ui/web/**"
-      - "packages/ui/mobile/app/**"
+      - "packages/web/**"
 
 defaults:
   run:
-    working-directory: ./packages/ui/web
+    working-directory: ./packages/web
 
 jobs:
   build:
