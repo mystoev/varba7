@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 
-import { useSharedNavigation } from "../../navigation";
+import { useSharedNavigation } from "../navigation";
 import { GET_BADGE_EXPENSES } from "../queries/expenses";
 
 const Badge_Expenses = () => {

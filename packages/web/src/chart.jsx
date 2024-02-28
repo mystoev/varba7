@@ -10,11 +10,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { GET_PERIODIC_BME280 } from "./shared/queries/periodic-bme280";
-import {
-  averageTemperatures,
-  maxTemperatures,
-} from "./shared/selectors/temperature";
+import { GET_PERIODIC_BME280 } from "./queries/periodic-bme280";
+import { averageTemperatures, maxTemperatures } from "./selectors/temperature";
 
 const Chart = ({ startDate, endDate }) => {
   const { data } = useQuery(GET_PERIODIC_BME280, {

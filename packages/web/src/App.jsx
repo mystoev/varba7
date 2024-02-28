@@ -7,7 +7,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { RouterProvider, createHashRouter } from "react-router-dom";
 
-import { BME280Page, ExpensesPage, HomePage } from "./shared/pages";
+import { BME280Page, ExpensesPage, HomePage } from "./pages";
 
 const httpLink = createHttpLink({
   uri: import.meta.env.DEV ? "http://localhost:4000" : import.meta.env.VITE_URL,

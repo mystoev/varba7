@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 
-import { useSharedNavigation } from "../../navigation";
+import { useSharedNavigation } from "../navigation";
 import { GET_LATEST_BME280 } from "../queries/latest-bme280";
 import { selectTemperatureColor } from "../selectors/color";
 import { toUTC } from "../selectors/utc";

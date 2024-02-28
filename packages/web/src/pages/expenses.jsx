@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
 
-import ExpensesChart from "../../expenses-chart";
-import TopCategoriesChart from "../../top-categories-chart";
+import ExpensesChart from "../expenses-chart";
 import { GET_LAST_12_MONTHS, LAST_YEAR_EXPENSES } from "../queries/expenses";
 import { getByCategory } from "../selectors/expenses";
+import TopCategoriesChart from "../top-categories-chart";
 
 export const ExpensesPage = () => {
   const { loading, data: lastYearExpenses } = useQuery(LAST_YEAR_EXPENSES);

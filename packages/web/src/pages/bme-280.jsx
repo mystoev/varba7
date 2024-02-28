@@ -1,8 +1,8 @@
 import { add, format, parse } from "date-fns";
 import { useState } from "react";
 
-import Chart from "../../chart";
-import { MonthDropdown } from "../../month-dropdown";
+import Chart from "../chart";
+import { MonthDropdown } from "../month-dropdown";
 
 const start = new Date();
 const START_MONTH = format(start, "yyyy-MM") + "-1";
