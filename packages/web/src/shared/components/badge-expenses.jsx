@@ -17,7 +17,6 @@ const Badge_Expenses = () => {
     >
       <div
         style={{
-          marginTop: 20,
           backgroundColor: "royalblue",
           width: "90%",
           alignSelf: "center",

@@ -23,7 +23,6 @@ const Badge_BME280 = () => {
     >
       <div
         style={{
-          marginTop: 20,
           backgroundColor,
           width: "90%",
           alignSelf: "center",

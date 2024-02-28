@@ -4,7 +4,14 @@ import Badge_SDS011 from "./badge-sds011";
 
 const Home = () => {
   return (
-    <div>
+    <div
+      style={{
+        marginTop: 20,
+        display: "flex",
+        flexDirection: "column",
+        gap: 20,
+      }}
+    >
       <Badge_BME280 />
       <Badge_SDS011 />
       <Badge_Expenses />

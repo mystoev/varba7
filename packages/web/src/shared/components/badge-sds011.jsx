@@ -17,7 +17,6 @@ const Badge_SDS011 = () => {
   return (
     <div
       style={{
-        marginTop: 20,
         backgroundColor,
         width: "90%",
         alignSelf: "center",
