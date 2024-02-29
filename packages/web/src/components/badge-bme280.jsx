@@ -62,7 +62,9 @@ const Badge_BME280 = () => {
               }}
             >
               Temperature:
-              <span>{data.latestBME280.temperature} °C</span>
+              <span style={{ color: "white" }}>
+                {data.latestBME280.temperature} °C
+              </span>
             </p>
             <p
               style={{
