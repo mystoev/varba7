@@ -1,9 +1,18 @@
 import { useQuery } from "@apollo/client";
+import styled from "styled-components";
 
 import { useSharedNavigation } from "../navigation";
 import { GET_LATEST_BME280 } from "../queries/latest-bme280";
 import { selectTemperatureColor } from "../selectors/color";
 import { toUTC } from "../selectors/utc";
+
+const Heading1 = styled.p`
+  font-size: 32px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  padding-top: 10px;
+`;
 
 const Badge_BME280 = () => {
   const { loading, error, data } = useQuery(GET_LATEST_BME280);
@@ -30,17 +39,7 @@ const Badge_BME280 = () => {
           borderRadius: 5,
         }}
       >
-        <p
-          style={{
-            fontSize: 32,
-            fontWeight: "bold",
-            color: "black",
-            textAlign: "center",
-            paddingTop: 10,
-          }}
-        >
-          Weather
-        </p>
+        <Heading1>Weather</Heading1>
         {loading ? (
           <p
             style={{
