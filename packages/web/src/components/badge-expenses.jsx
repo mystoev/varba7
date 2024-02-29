@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 
 import { useSharedNavigation } from "../navigation";
 import { GET_BADGE_EXPENSES } from "../queries/expenses";
+import { Heading1, Heading2, Heading3, Loading, WhiteLabel } from "./styled";
 
 const Badge_Expenses = () => {
   const { loading, error, data } = useQuery(GET_BADGE_EXPENSES);
@@ -24,69 +25,27 @@ const Badge_Expenses = () => {
           borderRadius: 5,
         }}
       >
-        <p
-          style={{
-            fontSize: 32,
-            fontWeight: "bold",
-            color: "black",
-            textAlign: "center",
-            paddingTop: 10,
-          }}
-        >
-          Expenses
-        </p>
+        <Heading1>Expenses</Heading1>
         {loading ? (
-          <p
-            style={{
-              textAlign: "center",
-              padding: 10,
-            }}
-          >
-            Loading...
-          </p>
+          <Loading>Loading...</Loading>
         ) : (
           <>
-            <p
-              style={{
-                fontWeight: "bold",
-                textAlign: "center",
-                padding: 5,
-                fontSize: 24,
-                color: "#d3d3d3",
-              }}
-            >
+            <Heading2>
               This Month:{" "}
-              <span style={{ color: "white" }}>
+              <WhiteLabel>
                 {data?.badgeExpenses.month.toLocaleString()}лв
-              </span>
-            </p>
-            <p
-              style={{
-                fontWeight: "bold",
-                textAlign: "center",
-                padding: 5,
-                fontSize: 24,
-                color: "#d3d3d3",
-              }}
-            >
+              </WhiteLabel>
+            </Heading2>
+            <Heading2>
               This Year:{" "}
-              <span style={{ color: "white" }}>
+              <WhiteLabel>
                 {data?.badgeExpenses.year.toLocaleString()}лв
-              </span>
-            </p>
-            <p
-              style={{
-                fontWeight: "bold",
-                textAlign: "center",
-                color: "#d3d3d3",
-                padding: 5,
-              }}
-            >
+              </WhiteLabel>
+            </Heading2>
+            <Heading3>
               Last entry:{" "}
-              <span style={{ color: "white" }}>
-                {data?.badgeExpenses.lastEntry}
-              </span>
-            </p>
+              <WhiteLabel>{data?.badgeExpenses.lastEntry}</WhiteLabel>
+            </Heading3>
           </>
         )}
       </div>
