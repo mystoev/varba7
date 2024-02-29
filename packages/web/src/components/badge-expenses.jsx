@@ -2,29 +2,28 @@ import { useQuery } from "@apollo/client";
 
 import { useSharedNavigation } from "../navigation";
 import { GET_BADGE_EXPENSES } from "../queries/expenses";
-import { Heading1, Heading2, Heading3, Loading, WhiteLabel } from "./styled";
+import {
+  Container,
+  Heading1,
+  Heading2,
+  Heading3,
+  Loading,
+  WhiteLabel,
+} from "./styled";
 
 const Badge_Expenses = () => {
   const { loading, error, data } = useQuery(GET_BADGE_EXPENSES);
   const { navigate } = useSharedNavigation();
 
-  if (error) return <Text>Error : {error.message}</Text>;
+  if (error) return <p>Error : {error.message}</p>;
 
   return (
-    <div
+    <a
       onClick={() => {
         navigate("expenses");
       }}
     >
-      <div
-        style={{
-          backgroundColor: "royalblue",
-          width: "90%",
-          alignSelf: "center",
-          margin: "auto",
-          borderRadius: 5,
-        }}
-      >
+      <Container backgroundColor={"royalblue"}>
         <Heading1>Expenses</Heading1>
         {loading ? (
           <Loading>Loading...</Loading>
@@ -48,8 +47,8 @@ const Badge_Expenses = () => {
             </Heading3>
           </>
         )}
-      </div>
-    </div>
+      </Container>
+    </a>
   );
 };
 

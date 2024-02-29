@@ -4,7 +4,14 @@ import { useSharedNavigation } from "../navigation";
 import { GET_LATEST_BME280 } from "../queries/latest-bme280";
 import { selectTemperatureColor } from "../selectors/color";
 import { toUTC } from "../selectors/utc";
-import { Heading1, Heading2, Heading3, Loading, WhiteLabel } from "./styled";
+import {
+  Container,
+  Heading1,
+  Heading2,
+  Heading3,
+  Loading,
+  WhiteLabel,
+} from "./styled";
 
 const Badge_BME280 = () => {
   const { loading, error, data } = useQuery(GET_LATEST_BME280);
@@ -17,20 +24,12 @@ const Badge_BME280 = () => {
   );
 
   return (
-    <div
+    <a
       onClick={() => {
         navigate("bme280");
       }}
     >
-      <div
-        style={{
-          backgroundColor,
-          width: "90%",
-          alignSelf: "center",
-          margin: "auto",
-          borderRadius: 5,
-        }}
-      >
+      <Container backgroundColor={backgroundColor}>
         <Heading1>Weather</Heading1>
         {loading ? (
           <Loading>Loading...</Loading>
@@ -51,8 +50,8 @@ const Badge_BME280 = () => {
             </Heading3>
           </>
         )}
-      </div>
-    </div>
+      </Container>
+    </a>
   );
 };
 

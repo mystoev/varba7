@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const Container = styled.div<{ backgroundColor: string }>`
+  background-color: ${(props) => props.backgroundColor || "gray"};
+  width: 90%;
+  align-self: center;
+  margin: auto;
+  border-radius: 5;
+`;
+
 export const Heading1 = styled.h1`
   font-size: 32px;
   font-weight: bold;

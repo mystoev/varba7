@@ -3,12 +3,19 @@ import { useQuery } from "@apollo/client";
 import { GET_LATEST_SDS011 } from "../queries/latest-sds011";
 import { selectAirQualityColor } from "../selectors/color";
 import { toUTC } from "../selectors/utc";
-import { Heading1, Heading2, Heading3, Loading, WhiteLabel } from "./styled";
+import {
+  Container,
+  Heading1,
+  Heading2,
+  Heading3,
+  Loading,
+  WhiteLabel,
+} from "./styled";
 
 const Badge_SDS011 = () => {
   const { loading, error, data } = useQuery(GET_LATEST_SDS011);
 
-  if (error) return <Text>Error : {error.message}</Text>;
+  if (error) return <p>Error : {error.message}</p>;
 
   const backgroundColor = selectAirQualityColor(
     data?.latestSDS011?.pm25,
@@ -16,15 +23,7 @@ const Badge_SDS011 = () => {
   );
 
   return (
-    <div
-      style={{
-        backgroundColor,
-        width: "90%",
-        alignSelf: "center",
-        margin: "auto",
-        borderRadius: 5,
-      }}
-    >
+    <Container backgroundColor={backgroundColor}>
       <Heading1>Air Quality</Heading1>
       {loading ? (
         <Loading>Loading...</Loading>
@@ -44,7 +43,7 @@ const Badge_SDS011 = () => {
           </Heading3>
         </>
       )}
-    </div>
+    </Container>
   );
 };
 
