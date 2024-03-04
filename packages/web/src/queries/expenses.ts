@@ -37,6 +37,7 @@ export const GET_LAST_12_MONTHS = gql`
     topCategories {
       amount
       tags
+      date
     }
   }
 `;

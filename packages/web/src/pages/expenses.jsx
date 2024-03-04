@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import ExpensesChart from "../components/expenses-chart";
 import TopCategoriesChart from "../components/top-categories-chart";
 import { GET_LAST_12_MONTHS, LAST_YEAR_EXPENSES } from "../queries/expenses";
-import { getByCategory } from "../selectors/expenses";
+import { getByCategory, getLastMonthCategoryData } from "../selectors/expenses";
 
 export const ExpensesPage = () => {
   const { loading, data: lastYearExpenses } = useQuery(LAST_YEAR_EXPENSES);
@@ -11,6 +11,9 @@ export const ExpensesPage = () => {
     useQuery(GET_LAST_12_MONTHS);
 
   const categoriesData = getByCategory(topCategories?.topCategories);
+  const lastMonthCategoryData = getLastMonthCategoryData(
+    topCategories?.topCategories
+  );
 
   return (
     <div style={{ margin: 10 }}>
@@ -29,6 +32,12 @@ export const ExpensesPage = () => {
       {loading && <p>Loading...</p>}
       {lastYearExpenses && (
         <ExpensesChart lastYearExpenses={lastYearExpenses.lastYearExpenses} />
+      )}
+      <p style={{ fontSize: 32, color: "black", paddingTop: 10 }}>
+        Last Month's Expenses By Category
+      </p>
+      {lastMonthCategoryData && (
+        <TopCategoriesChart data={lastMonthCategoryData} />
       )}
       <p
         style={{
